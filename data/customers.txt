@@ -1,0 +1,2 @@
+cust1	Hasan Piker	2001-10-18	011-55018109	hasan@gmail.com	No.5,Emerald Road	0004033044850018
+cust2	Michael Reeves	2003-01-07	012-4828390	michael.reeves@gmail.com	No.6,Newell Road	7593390508484573

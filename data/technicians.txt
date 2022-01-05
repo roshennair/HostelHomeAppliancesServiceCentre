@@ -1,0 +1,2 @@
+tech1	Jenny Doe	2003-01-07	tech1	3000
+tech2	Allan Doe	2000-05-19	tech2	3000
