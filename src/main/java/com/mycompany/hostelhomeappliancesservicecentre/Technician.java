@@ -10,7 +10,7 @@ import java.time.LocalDate;
  *
  * @author arvind
  */
-public class Technician extends Employee {
+public class Technician extends Employee  {
     
     public Technician(
             String username,
