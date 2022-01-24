@@ -73,7 +73,8 @@ public class LoginForm extends javax.swing.JFrame {
         formTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         formTitleLabel.setText("Login");
 
-        accountTypeField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manager" }));
+        accountTypeField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manager", "Technician" }));
+        accountTypeField.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,18 +133,33 @@ public class LoginForm extends javax.swing.JFrame {
         String accountType = this.accountTypeField.getSelectedItem().toString().toLowerCase();
 	String username = this.usernameField.getText();
 	String password = String.valueOf(this.passwordField.getPassword());
-	if (Manager.authenticate(username, password)) {
-	    System.out.println("Welcome in!");
+	
+	if (accountType.equals("manager")) {
+	    // login as manager
+	    if (Manager.authenticate(username, password)) {
+		System.out.println("Welcome in!");
+	    } else {
+		this.displayLoginErrorMessage();
+	    }
 	} else {
-	    JOptionPane.showMessageDialog(
-		    this,
-		    "Incorrect login credentials, please try again.",
-		    "Login Error",
-		    JOptionPane.ERROR_MESSAGE
-	    );
+	    // login as technician
+//	    if (Technician.authenticate(username, password)) {
+//		System.out.println("Welcome in!");
+//	    } else {
+//		this.displayLoginErrorMessage();
+//	    }
 	}
     }//GEN-LAST:event_loginButtonActionPerformed
 
+    private void displayLoginErrorMessage() {
+	JOptionPane.showMessageDialog(
+		this,
+		"Incorrect login credentials, please try again.",
+		"Login Error",
+		JOptionPane.ERROR_MESSAGE
+	);
+    }
+    
     /**
      * @param args the command line arguments
      */

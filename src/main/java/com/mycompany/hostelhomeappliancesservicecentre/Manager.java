@@ -14,7 +14,7 @@ import java.util.Scanner;
  * @author Roshen Nair
  */
 public class Manager extends Employee {
-    private static String fileName = "managers.txt";
+    private static final String fileName = "managers.txt";
 
     public Manager(
             String username,
