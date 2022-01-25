@@ -84,6 +84,11 @@ public class Customer extends Person {
 
         return null;
     }
+    
+    // TODO: Write new customer to customers text file
+    public static void register(Customer customer) {
+	
+    }
 
     public String getPhoneNumber() {
         return this.phoneNumber;
