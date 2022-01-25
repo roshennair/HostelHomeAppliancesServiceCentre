@@ -139,10 +139,9 @@ public class LoginForm extends javax.swing.JFrame {
 	    // login as manager
 	    if (Manager.authenticate(username, password)) {
 		HHASCSystem.getInstance().setCurrentEmployee(Manager.get(username));
-		this.setVisible(false);
+		this.dispose();
 		ManagerMenu menu = new ManagerMenu();
 		menu.setVisible(true);
-		this.dispose();
 	    } else {
 		this.displayLoginErrorMessage();
 	    }

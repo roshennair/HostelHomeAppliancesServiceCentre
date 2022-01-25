@@ -103,7 +103,8 @@ public class ManagerMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+	HHASCSystem.getInstance().logout();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**

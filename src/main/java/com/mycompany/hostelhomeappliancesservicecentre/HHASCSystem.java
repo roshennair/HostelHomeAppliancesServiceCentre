@@ -8,11 +8,9 @@ package com.mycompany.hostelhomeappliancesservicecentre;
  *
  * @author Roshen Nair
  */
-// TODO: Create HHASC singleton class to store globally accessible state
 public class HHASCSystem {
     private static HHASCSystem systemInstance;
     private Employee currentEmployee;
-    private String currentAccountType;
     
     public static HHASCSystem getInstance() {
 	if (HHASCSystem.systemInstance == null) {
@@ -32,5 +30,11 @@ public class HHASCSystem {
     
     public String getCurrentAccountType() {
 	return this.currentEmployee.getClass().getSimpleName();
+    }
+    
+    public void logout() {
+	this.currentEmployee = null;
+	LoginForm loginForm = new LoginForm();
+	loginForm.setVisible(true);
     }
 }
