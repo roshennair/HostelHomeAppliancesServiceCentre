@@ -10,10 +10,9 @@ package com.mycompany.hostelhomeappliancesservicecentre;
  */
 public class Main {
     public static void main(String[] args) {
-        Manager m1 = Manager.get("manager2");
-        System.out.println(m1);
-	
-	Customer c1 = Customer.get("cust2");
-	System.out.println(c1);
+	// Generate new instance of HHASC system
+	HHASCSystem.getInstance();
+	LoginForm loginForm = new LoginForm();
+	loginForm.setVisible(true);
     }
 }

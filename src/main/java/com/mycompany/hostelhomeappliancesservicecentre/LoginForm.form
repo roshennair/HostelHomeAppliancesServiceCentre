@@ -25,26 +25,26 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
-                      <Component id="accountTypeLabel" min="-2" max="-2" attributes="0"/>
-                      <Component id="accountTypeField" min="-2" pref="103" max="-2" attributes="0"/>
-                      <Component id="usernameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="usernameField" alignment="0" pref="429" max="32767" attributes="0"/>
-                      <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="loginButton" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="formTitleLabel" alignment="1" min="-2" pref="429" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="60" max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="systemTitleLabel" min="-2" pref="515" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="loginButton" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="usernameField" alignment="0" pref="429" max="32767" attributes="0"/>
+                      <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="usernameLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="accountTypeField" alignment="0" pref="103" max="32767" attributes="0"/>
+                      <Component id="passwordLabel" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                      <Component id="accountTypeLabel" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="formTitleLabel" alignment="1" min="-2" pref="429" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="60" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
