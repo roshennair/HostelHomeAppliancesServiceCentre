@@ -58,7 +58,7 @@ public class ManagerMenu extends javax.swing.JFrame {
 
         welcomeMessage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         welcomeMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        welcomeMessage.setText("Welcome, " + HHASCSystem.getInstance().getCurrentEmployee().getName());
+        welcomeMessage.setText("Welcome, " + ServiceCentre.getInstance().getCurrentEmployee().getName());
         welcomeMessage.setPreferredSize(new java.awt.Dimension(551, 434));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -104,7 +104,7 @@ public class ManagerMenu extends javax.swing.JFrame {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         this.dispose();
-	HHASCSystem.getInstance().logout();
+	ServiceCentre.getInstance().logout();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**

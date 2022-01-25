@@ -8,16 +8,16 @@ package com.mycompany.hostelhomeappliancesservicecentre;
  *
  * @author Roshen Nair
  */
-public class HHASCSystem {
-    private static HHASCSystem systemInstance;
+public class ServiceCentre {
+    private static ServiceCentre serviceCentreInstance;
     private Employee currentEmployee;
     
-    public static HHASCSystem getInstance() {
-	if (HHASCSystem.systemInstance == null) {
-	    HHASCSystem.systemInstance = new HHASCSystem();
+    public static ServiceCentre getInstance() {
+	if (ServiceCentre.serviceCentreInstance == null) {
+	    ServiceCentre.serviceCentreInstance = new ServiceCentre();
 	}
 	
-	return HHASCSystem.systemInstance;
+	return ServiceCentre.serviceCentreInstance;
     }
     
     public Employee getCurrentEmployee() {
