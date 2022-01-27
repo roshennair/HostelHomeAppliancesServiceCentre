@@ -40,7 +40,9 @@ public class ServiceCentre {
     }
 
     public void setCurrentWindow(JFrame newWindow) {
-	this.currentWindow.dispose();
+	if (this.currentWindow != null) {
+	    this.currentWindow.dispose();
+	}
 	this.currentWindow = newWindow;
 	this.currentWindow.setVisible(true);
     }

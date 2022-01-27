@@ -40,7 +40,7 @@ public class LoginForm extends javax.swing.JFrame {
         accountTypeField = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
+        setTitle("Login Form");
         setResizable(false);
 
         systemTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N

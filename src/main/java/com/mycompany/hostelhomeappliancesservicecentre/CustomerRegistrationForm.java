@@ -5,6 +5,7 @@
 package com.mycompany.hostelhomeappliancesservicecentre;
 
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,8 +51,10 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
         dayField = new javax.swing.JComboBox<>();
         monthField = new javax.swing.JComboBox<>();
         yearField = new javax.swing.JComboBox<>();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Customer Registration Form");
 
         systemTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         systemTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -140,6 +143,14 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
         }
         yearField.setModel(new javax.swing.DefaultComboBoxModel<>(years));
 
+        cancelButton.setText("Cancel");
+        cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,7 +191,10 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
                                     .addComponent(yearLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(yearField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -225,8 +239,10 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bankCardField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Customer Registration Form");
@@ -254,6 +270,24 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
 	// TODO add your handling code here:
     }//GEN-LAST:event_bankCardFieldActionPerformed
 
+    private void displayCustomerRegistrationSuccessMessage() {
+	JOptionPane.showMessageDialog(
+		this,
+		"The customer was successfully registered!",
+		"Customer Registration Success",
+		JOptionPane.INFORMATION_MESSAGE
+	);
+    }
+    
+    private void displayCustomerRegistrationErrorMessage() {
+	JOptionPane.showMessageDialog(
+		this,
+		"This customer username has already been taken.",
+		"Customer Registration Error",
+		JOptionPane.ERROR_MESSAGE
+	);
+    }
+    
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
 	String username = this.usernameField.getText();
 	String name = this.nameField.getText();
@@ -268,8 +302,17 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
 
 	Customer newCustomer = new Customer(username, name, birthday, phoneNumber, email, address, bankCard);
 	
-	// TODO: Check if customer exists, if yes, show error message, else add new line to customers text file
+	if (Customer.register(newCustomer)) {
+	    this.displayCustomerRegistrationSuccessMessage();
+	    ServiceCentre.getInstance().setCurrentWindow(new ManagerMenu());
+	} else {
+	    this.displayCustomerRegistrationErrorMessage();
+	}
     }//GEN-LAST:event_registerButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        ServiceCentre.getInstance().setCurrentWindow(new ManagerMenu());
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,6 +355,7 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
     private javax.swing.JTextField bankCardField;
     private javax.swing.JLabel bankCardLabel;
     private javax.swing.JLabel birthdayLabel;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> dayField;
     private javax.swing.JLabel dayLabel;
     private javax.swing.JTextField emailField;

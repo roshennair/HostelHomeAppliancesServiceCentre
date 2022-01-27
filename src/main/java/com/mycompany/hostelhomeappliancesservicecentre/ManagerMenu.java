@@ -45,6 +45,11 @@ public class ManagerMenu extends javax.swing.JFrame {
         formTitleLabel.setPreferredSize(new java.awt.Dimension(551, 434));
 
         registerCustomerButton.setText("Register new customer");
+        registerCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerCustomerButtonActionPerformed(evt);
+            }
+        });
 
         searchCustomerButton.setText("Search for a customer");
         searchCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -118,9 +123,12 @@ public class ManagerMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        this.dispose();
 	ServiceCentre.getInstance().logout();
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void registerCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCustomerButtonActionPerformed
+        ServiceCentre.getInstance().setCurrentWindow(new CustomerRegistrationForm());
+    }//GEN-LAST:event_registerCustomerButtonActionPerformed
 
     /**
      * @param args the command line arguments
