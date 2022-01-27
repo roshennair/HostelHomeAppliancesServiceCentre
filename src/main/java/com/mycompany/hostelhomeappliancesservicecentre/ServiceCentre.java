@@ -4,6 +4,8 @@
  */
 package com.mycompany.hostelhomeappliancesservicecentre;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Roshen Nair
@@ -11,6 +13,7 @@ package com.mycompany.hostelhomeappliancesservicecentre;
 public class ServiceCentre {
     private static ServiceCentre serviceCentreInstance;
     private Employee currentEmployee;
+    private JFrame currentWindow;
     
     public static ServiceCentre getInstance() {
 	if (ServiceCentre.serviceCentreInstance == null) {
@@ -31,10 +34,19 @@ public class ServiceCentre {
     public String getCurrentAccountType() {
 	return this.currentEmployee.getClass().getSimpleName();
     }
+
+    public JFrame getCurrentWindow() {
+	return currentWindow;
+    }
+
+    public void setCurrentWindow(JFrame newWindow) {
+	this.currentWindow.dispose();
+	this.currentWindow = newWindow;
+	this.currentWindow.setVisible(true);
+    }
     
     public void logout() {
-	this.currentEmployee = null;
-	LoginForm loginForm = new LoginForm();
-	loginForm.setVisible(true);
+	this.setCurrentEmployee(null);
+	this.setCurrentWindow(new LoginForm());
     }
 }

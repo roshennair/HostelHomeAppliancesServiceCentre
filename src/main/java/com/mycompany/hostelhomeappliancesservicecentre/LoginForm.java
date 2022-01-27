@@ -137,10 +137,9 @@ public class LoginForm extends javax.swing.JFrame {
 	if (accountType.equals("manager")) {
 	    // login as manager
 	    if (Manager.authenticate(username, password)) {
-		ServiceCentre.getInstance().setCurrentEmployee(Manager.get(username));
-		this.dispose();
-		ManagerMenu menu = new ManagerMenu();
-		menu.setVisible(true);
+		ServiceCentre serviceCentre = ServiceCentre.getInstance();
+		serviceCentre.setCurrentEmployee(Manager.get(username));
+		serviceCentre.setCurrentWindow(new ManagerMenu());
 	    } else {
 		this.displayLoginErrorMessage();
 	    }

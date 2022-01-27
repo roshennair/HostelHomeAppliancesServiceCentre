@@ -10,9 +10,7 @@ package com.mycompany.hostelhomeappliancesservicecentre;
  */
 public class Main {
     public static void main(String[] args) {
-	// Generate new instance of HHASC system
-	ServiceCentre.getInstance();
-	LoginForm loginForm = new LoginForm();
-	loginForm.setVisible(true);
+	// Generate new instance of HHASC system and display login form
+	ServiceCentre.getInstance().setCurrentWindow(new LoginForm());
     }
 }
