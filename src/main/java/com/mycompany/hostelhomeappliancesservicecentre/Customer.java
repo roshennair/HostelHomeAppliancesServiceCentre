@@ -139,7 +139,47 @@ public class Customer extends Person {
 	
 	return false;
     }
+    
+    public static boolean update(Customer updatedCustomer) {	
+	if (Customer.exists(updatedCustomer.getUsername())) {
+	    ArrayList<Customer> customers = new ArrayList<Customer>();
+	    
+	    // read all customers into arraylist
+	    try {
+		File customersFile = new File("data/" + Customer.fileName);
+		Scanner fileScanner = new Scanner(customersFile);
 
+		while (fileScanner.hasNextLine()) {
+		    String currentLine = fileScanner.nextLine();
+		    Customer currentCustomer = Customer.parse(currentLine);
+		    // if matching username, replace with updated customer
+		    if (currentCustomer.getUsername().equals(updatedCustomer.getUsername())) {
+			customers.add(updatedCustomer);
+			break;
+		    } else {
+			customers.add(currentCustomer);
+		    }
+		}
+	    } catch (FileNotFoundException e) {
+		System.out.println("File not found: " + Customer.fileName);
+	    }
+
+	    // overwrite customers file with updated customers
+	    try {
+		FileWriter fileWriter = new FileWriter("data/" + Customer.fileName);
+		for (Customer customer: customers) {   
+		    fileWriter.write(Customer.stringify(customer));
+		}
+		fileWriter.close();
+		return true;
+	    } catch (IOException e) {
+		System.out.println("Could not write to file: " + Customer.fileName);
+	    }
+	}
+	
+	return false;
+    }
+    
     public String getPhoneNumber() {
 	return this.phoneNumber;
     }

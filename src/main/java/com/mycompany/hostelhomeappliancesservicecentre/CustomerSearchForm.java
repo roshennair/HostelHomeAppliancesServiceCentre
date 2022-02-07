@@ -43,6 +43,7 @@ public class CustomerSearchForm extends javax.swing.JFrame {
         customersTable = new javax.swing.JTable();
         customerSearchField = new javax.swing.JTextField();
         customerSearchLabel = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Customer Search Form");
@@ -73,7 +74,7 @@ public class CustomerSearchForm extends javax.swing.JFrame {
         customersTable.setModel(new javax.swing.table.DefaultTableModel(
             customersData,
             new String [] {
-                "Customer ID", "Name", "Birthday", "Phone number", "Email address", "Address", "Bank card number"
+                "Customer ID", "Name", "Birthday", "Phone number", "Email address", "House address", "Bank card number"
             }
         ) {
             Class[] types = new Class [] {
@@ -110,6 +111,13 @@ public class CustomerSearchForm extends javax.swing.JFrame {
 
         customerSearchLabel.setText("Search");
 
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,16 +125,17 @@ public class CustomerSearchForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(customerSearchLabel)
+                            .addComponent(customerSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(systemTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(formTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
-                            .addComponent(customersTableScrollPane)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(customerSearchLabel)
-                            .addComponent(customerSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(customersTableScrollPane)
+                            .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -142,7 +151,9 @@ public class CustomerSearchForm extends javax.swing.JFrame {
                 .addComponent(customerSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(customersTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -169,6 +180,10 @@ public class CustomerSearchForm extends javax.swing.JFrame {
 	    ServiceCentre.getInstance().setCurrentWindow(new CustomerMenu());
 	}
     }//GEN-LAST:event_customersTableMouseClicked
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        ServiceCentre.getInstance().setCurrentWindow(new ManagerMenu());
+    }//GEN-LAST:event_backButtonActionPerformed
     
     /**
      * @param args the command line arguments
@@ -207,6 +222,7 @@ public class CustomerSearchForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JTextField customerSearchField;
     private javax.swing.JLabel customerSearchLabel;
     private javax.swing.JTable customersTable;
