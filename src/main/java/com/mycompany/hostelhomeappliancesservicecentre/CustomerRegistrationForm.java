@@ -245,8 +245,6 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        getAccessibleContext().setAccessibleName("Customer Registration Form");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 

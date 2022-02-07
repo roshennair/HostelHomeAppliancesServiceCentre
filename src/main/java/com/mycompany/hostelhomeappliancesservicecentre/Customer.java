@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -85,6 +86,25 @@ public class Customer extends Person {
 	}
 
 	return null;
+    }
+    
+    public static ArrayList<Customer> getAll() {
+	ArrayList<Customer> customers = new ArrayList<Customer>();
+	
+	try {
+	    File customersFile = new File("data/" + Customer.fileName);
+	    Scanner fileScanner = new Scanner(customersFile);
+
+	    while (fileScanner.hasNextLine()) {
+		String currentLine = fileScanner.nextLine();
+		Customer currentCustomer = Customer.parse(currentLine);
+		customers.add(currentCustomer);
+	    }
+	} catch (FileNotFoundException e) {
+	    System.out.println("File not found: " + Customer.fileName);
+	}
+	
+	return customers;
     }
 
     public static boolean exists(String username) {

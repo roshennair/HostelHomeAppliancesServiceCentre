@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 public class ServiceCentre {
     private static ServiceCentre serviceCentreInstance;
     private Employee currentEmployee;
+    private Customer currentCustomer;
     private JFrame currentWindow;
     
     public static ServiceCentre getInstance() {
@@ -34,9 +35,17 @@ public class ServiceCentre {
     public String getCurrentAccountType() {
 	return this.currentEmployee.getClass().getSimpleName();
     }
+    
+    public Customer getCurrentCustomer() {
+	return this.currentCustomer;
+    }
+
+    public void setCurrentCustomer(Customer currentCustomer) {
+	this.currentCustomer = currentCustomer;
+    }
 
     public JFrame getCurrentWindow() {
-	return currentWindow;
+	return this.currentWindow;
     }
 
     public void setCurrentWindow(JFrame newWindow) {
@@ -49,6 +58,7 @@ public class ServiceCentre {
     
     public void logout() {
 	this.setCurrentEmployee(null);
+	this.setCurrentCustomer(null);
 	this.setCurrentWindow(new LoginForm());
     }
 }
