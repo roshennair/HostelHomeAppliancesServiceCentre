@@ -155,7 +155,6 @@ public class Customer extends Person {
 		    // if matching username, replace with updated customer
 		    if (currentCustomer.getUsername().equals(updatedCustomer.getUsername())) {
 			customers.add(updatedCustomer);
-			break;
 		    } else {
 			customers.add(currentCustomer);
 		    }

@@ -74,7 +74,7 @@ public class CustomerSearchForm extends javax.swing.JFrame {
         customersTable.setModel(new javax.swing.table.DefaultTableModel(
             customersData,
             new String [] {
-                "Customer ID", "Name", "Birthday", "Phone number", "Email address", "House address", "Bank card number"
+                "Username", "Name", "Birthday", "Phone number", "Email address", "House address", "Bank card number"
             }
         ) {
             Class[] types = new Class [] {
