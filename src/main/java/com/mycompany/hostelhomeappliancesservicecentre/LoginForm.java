@@ -145,11 +145,13 @@ public class LoginForm extends javax.swing.JFrame {
 	    }
 	} else {
 	    // login as technician
-//	    if (Technician.authenticate(username, password)) {
-//		System.out.println("Welcome in!");
-//	    } else {
-//		this.displayLoginErrorMessage();
-//	    }
+	    if (Technician.authenticate(username, password)) {
+                ServiceCentre serviceCentre = ServiceCentre.getInstance();
+                serviceCentre.setCurrentEmployee(Manager.get(username));
+                serviceCentre.setCurrentWindow(new TechnicianMainMenu());
+	    } else {
+		this.displayLoginErrorMessage();
+	    }
 	}
     }//GEN-LAST:event_loginButtonActionPerformed
 
