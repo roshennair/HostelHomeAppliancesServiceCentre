@@ -33,6 +33,7 @@ public class TechnicianMenu extends javax.swing.JFrame {
         cancelAppointmentButton = new javax.swing.JButton();
         collectPaymentButton = new javax.swing.JButton();
         collectFeedbackButton = new javax.swing.JButton();
+        generateReportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +76,13 @@ public class TechnicianMenu extends javax.swing.JFrame {
             }
         });
 
+        generateReportButton.setText("Generate report");
+        generateReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateReportButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,8 +110,13 @@ public class TechnicianMenu extends javax.swing.JFrame {
                                 .addComponent(collectFeedbackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(22, 22, 22))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(generateReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,11 +132,13 @@ public class TechnicianMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(modifyAppointmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(collectPaymentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cancelAppointmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(collectFeedbackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(65, 65, 65))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelAppointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(collectFeedbackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(generateReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -144,6 +159,10 @@ public class TechnicianMenu extends javax.swing.JFrame {
     private void collectFeedbackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectFeedbackButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_collectFeedbackButtonActionPerformed
+
+    private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_generateReportButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,6 +205,7 @@ public class TechnicianMenu extends javax.swing.JFrame {
     private javax.swing.JButton collectFeedbackButton;
     private javax.swing.JButton collectPaymentButton;
     private javax.swing.JLabel formTitleLabel;
+    private javax.swing.JButton generateReportButton;
     private javax.swing.JButton modifyAppointmentButton;
     private javax.swing.JLabel systemTitleLabel;
     // End of variables declaration//GEN-END:variables

@@ -5,6 +5,7 @@
 package com.mycompany.hostelhomeappliancesservicecentre;
 
 import java.time.LocalDateTime;
+import java.util.Vector;
 
 /**
  *
@@ -50,8 +51,20 @@ public class Appointment {
 //    }
     
 //    Implement parsing feature to go through files and locate appointment ID
-//    public static Appointment parse(String appointmentID) {
+//    public static Appointment parse(String appointmentLine) {
+//        String[] appointmentDetails = appointmentLine.split("\t");
 //        
+//        double pricePerHour = Double.parseDouble(appointmentDetails[0]);
+//        String id = appointmentDetails[1];
+//        String customerUsername = appointmentDetails[2];
+//        LocalDateTime time = LocalDateTime.parse(appointmentDetails[3]);
+//        int durationInHours = Integer.parseInt(appointmentDetails[4]);
+//        String appliance = appointmentDetails[5];
+//        String technicianUsername = appointmentDetails[6];
+//        Boolean paid = Boolean.parseBoolean(appointmentDetails[7]);
+//        String feedback = appointmentDetails[8];
+//        
+////        return new Appointment(pricePerHour, id, customer, time, durationInHours, appliance, technician, true, feedback);
 //    }
     
 //    Return an appointment object from file
