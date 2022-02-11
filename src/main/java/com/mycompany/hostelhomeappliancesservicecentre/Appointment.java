@@ -13,32 +13,30 @@ import java.util.Vector;
  */
 public class Appointment {
     
-    private static double pricePerHour;
+    private static double pricePerHour = 50;
     private String id;
     private Customer customer;
     private LocalDateTime time;
-    private int durationInHours;
+    private AppointmentDuration duration;
     private String appliance;
     private Technician technician;
     private boolean paid;
     private String feedback;
     
     public Appointment(
-            double pricePerHour,
             String id,
             Customer customer,
             LocalDateTime time,
-            int durationInHours,
+            AppointmentDuration duration,
             String appliance,
             Technician technician,
             boolean paid,
             String feedback
     ) {
-        this.pricePerHour = pricePerHour;
         this.id = id;
         this.customer = customer;
         this.time = time;
-        this.durationInHours = durationInHours;
+        this.duration = duration;
         this.appliance = appliance;
         this.technician = technician;
         this.paid = paid;
@@ -53,8 +51,9 @@ public class Appointment {
 //    Implement parsing feature to go through files and locate appointment ID
 //    public static Appointment parse(String appointmentLine) {
 //        String[] appointmentDetails = appointmentLine.split("\t");
-//        
-//        double pricePerHour = Double.parseDouble(appointmentDetails[0]);
+        
+        // double pricePerHour = Double.parseDouble(appointmentDetails[0]);
+        // Revise the elements
 //        String id = appointmentDetails[1];
 //        String customerUsername = appointmentDetails[2];
 //        LocalDateTime time = LocalDateTime.parse(appointmentDetails[3]);
@@ -64,8 +63,12 @@ public class Appointment {
 //        Boolean paid = Boolean.parseBoolean(appointmentDetails[7]);
 //        String feedback = appointmentDetails[8];
 //        
-////        return new Appointment(pricePerHour, id, customer, time, durationInHours, appliance, technician, true, feedback);
+//        Customer customer = Customer.get(customerUsername);
+//        
+//        return new Appointment(id, customer, time, duration, appliance, technician, true, feedback);
 //    }
+    
+    // Add in new method, check if last ID exists, if not, scan file and read these ID.
     
 //    Return an appointment object from file
 //    public static Appointment get(String appointmentID) {
@@ -98,11 +101,11 @@ public class Appointment {
     }
     
     public int getDurationInHours() {
-        return this.durationInHours;
+        return this.duration;
     }
     
     public void setDurationInHours(int durationInHours) {
-        this.durationInHours = durationInHours;
+        this.duration = duration;
     }
     
     public String getAppliance() {
