@@ -14,6 +14,7 @@ public class ServiceCentre {
     private static ServiceCentre serviceCentreInstance;
     private Employee currentEmployee;
     private Customer currentCustomer;
+    private Appointment currentAppointment;
     private JFrame currentWindow;
     
     public static ServiceCentre getInstance() {
@@ -42,6 +43,14 @@ public class ServiceCentre {
 
     public void setCurrentCustomer(Customer currentCustomer) {
 	this.currentCustomer = currentCustomer;
+    }
+    
+    public Appointment getCurrentAppointment() {
+        return this.currentAppointment;
+    }
+    
+    public void setCurrentAppointment(Appointment currentAppointment) {
+        this.currentAppointment = currentAppointment;
     }
 
     public JFrame getCurrentWindow() {

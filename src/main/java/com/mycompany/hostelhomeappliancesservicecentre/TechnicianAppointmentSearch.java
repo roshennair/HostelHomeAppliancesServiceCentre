@@ -119,6 +119,9 @@ public class TechnicianAppointmentSearch extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Add method to add current appointment into service center class
+    
+    
     private void appointmentSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointmentSearchFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_appointmentSearchFieldActionPerformed
