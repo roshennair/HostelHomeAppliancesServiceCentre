@@ -50,6 +50,7 @@ public class Technician extends Employee {
             while(fileReader.hasNextLine()) {
                 String currentline = fileReader.nextLine();
                 Technician currentTechnician = Technician.parse(currentline);
+                
                 if(currentTechnician.getUsername().equals(username)) {
                     return currentTechnician;
                 }

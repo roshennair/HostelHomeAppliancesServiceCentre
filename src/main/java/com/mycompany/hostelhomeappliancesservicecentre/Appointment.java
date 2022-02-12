@@ -4,7 +4,10 @@
  */
 package com.mycompany.hostelhomeappliancesservicecentre;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
+import java.util.Scanner;
 import java.util.Vector;
 
 /**
@@ -12,6 +15,8 @@ import java.util.Vector;
  * @author arvind
  */
 public class Appointment {
+    
+    private static final String fileName = "appointments.txt";
     
     private static double pricePerHour = 50;
     private String id;
@@ -49,31 +54,49 @@ public class Appointment {
 //    }
     
 //    Implement parsing feature to go through files and locate appointment ID
-//    public static Appointment parse(String appointmentLine) {
-//        String[] appointmentDetails = appointmentLine.split("\t");
+    public static Appointment parse(String appointmentLine) {
+        String[] appointmentDetails = appointmentLine.split("\t");
         
-        // double pricePerHour = Double.parseDouble(appointmentDetails[0]);
         // Revise the elements
-//        String id = appointmentDetails[1];
-//        String customerUsername = appointmentDetails[2];
-//        LocalDateTime time = LocalDateTime.parse(appointmentDetails[3]);
-//        int durationInHours = Integer.parseInt(appointmentDetails[4]);
-//        String appliance = appointmentDetails[5];
-//        String technicianUsername = appointmentDetails[6];
-//        Boolean paid = Boolean.parseBoolean(appointmentDetails[7]);
-//        String feedback = appointmentDetails[8];
-//        
-//        Customer customer = Customer.get(customerUsername);
-//        
-//        return new Appointment(id, customer, time, duration, appliance, technician, true, feedback);
-//    }
+        String id = appointmentDetails[0];
+        String customerUsername = appointmentDetails[1];
+        LocalDateTime time = LocalDateTime.parse(appointmentDetails[2]);
+        AppointmentDuration duration = AppointmentDuration.valueOf(appointmentDetails[3]);
+        String appliance = appointmentDetails[4];
+        String technicianUsername = appointmentDetails[5];
+        Boolean paid = Boolean.parseBoolean(appointmentDetails[6]);
+        String feedback = appointmentDetails[7];
+        
+        Customer customer = Customer.get(customerUsername);
+        Technician technician = Technician.get(technicianUsername);
+        
+        return new Appointment(id, customer, time, duration, appliance, technician, paid, feedback);
+    }
     
-    // Add in new method, check if last ID exists, if not, scan file and read these ID.
+    // Add in new method, check if last ID exists, if not, scan file and read existing IDs.
     
 //    Return an appointment object from file
-//    public static Appointment get(String appointmentID) {
-//        
-//    }
+    public static Appointment get(String id) {
+        
+        try {
+            File appointmentFile = new File("data/" + Appointment.fileName);
+            Scanner fileReader = new Scanner(appointmentFile);
+            
+            while(fileReader.hasNextLine()) {
+                String currentLine = fileReader.nextLine();
+                Appointment currentAppointment = Appointment.parse(currentLine);
+                
+                if(currentAppointment.getID().equals(id)) {
+                    return currentAppointment;
+                }
+            }
+        }
+        catch (FileNotFoundException exception) {
+            System.out.println("File not found: " + Appointment.fileName);
+        }
+        
+        return null;
+    }
     
 //    Implement functionality to cancel appointment
     public static void cancel(String appointmentID) {
@@ -100,9 +123,9 @@ public class Appointment {
         this.time = time;
     }
     
-    public int getDurationInHours() {
-        return this.duration;
-    }
+//    public enum getDurationInHours() {
+//        return this.duration;
+//    }
     
     public void setDurationInHours(int durationInHours) {
         this.duration = duration;
