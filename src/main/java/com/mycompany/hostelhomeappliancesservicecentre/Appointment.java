@@ -51,28 +51,43 @@ public class Appointment {
     }
     
     // Add in new method, check if last ID exists, if not, scan file and read existing IDs.
-//    Implement feature to either randomly generate next ID or increment last ID
-//    private static String getNextId() {
-//        try {
-//            
-//            File appointmentFile = new File("data/" + Appointment.fileName);
-//            Scanner fileReader = new Scanner(appointmentFile);
-//            
-//            while(fileReader.hasNextLine()) {
-//                
-//            }
-//            
-//        } catch (FileNotFoundException e){
-//            System.out.println("File not found: " + Appointment.fileName);
-//        }
-//        
-//        return null;
-//        
-//    }
     
-//    public static String storeLastId() {
-//        
-//    }
+    // Store last ID as a new boolean method in this class or service center class
+    // Then run last ID and see if exists or not, if yes, increment 1, if not, check file and look at last line of ID and increment 1.
+    
+//    Implement feature to either randomly generate next ID or increment last ID
+    private static String getNextId() {
+        try {
+            
+            File appointmentFile = new File("data/" + Appointment.fileName);
+            Scanner fileReader = new Scanner(appointmentFile);
+            
+            if(Appointment.fileName.length() == 0) {
+                int id = 1;
+                String idString = Integer.toString(id);
+                return idString;
+            } else {
+                int biggestId = 0;
+                while(fileReader.hasNextLine()) {
+                    String currentLine = fileReader.nextLine();
+                    Appointment currentAppointment = Appointment.parse(currentLine);
+                    if(Integer.parseInt(currentAppointment.getAppointmentID()) > biggestId) {
+                        biggestId = Integer.parseInt(currentAppointment.getAppointmentID());
+                    }
+                }
+                return Integer.toString(biggestId + 1);
+            }
+            
+            
+            
+        } catch (FileNotFoundException e){
+            System.out.println("File not found: " + Appointment.fileName);
+        }
+        
+        return null;
+        
+    }
+    
     
 //    Implement parsing feature to go through files and locate appointment ID
     public static Appointment parse(String appointmentLine) {
