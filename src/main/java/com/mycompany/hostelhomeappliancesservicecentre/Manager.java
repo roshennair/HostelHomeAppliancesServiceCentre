@@ -50,9 +50,9 @@ public class Manager extends Employee {
                     return currentManager;
 		}
             }
-        } catch (FileNotFoundException e) {
+	} catch (FileNotFoundException e) {
             System.out.println("File not found: " + Manager.fileName);
-        }
+	}
 
         return null;
     }

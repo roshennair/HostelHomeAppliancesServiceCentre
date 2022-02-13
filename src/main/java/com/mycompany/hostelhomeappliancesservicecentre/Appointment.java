@@ -19,73 +19,64 @@ import java.util.Scanner;
 public class Appointment {
     
     private static final String fileName = "appointments.txt";
+    private static final int durationInHours = 1;
+    private static final double appointmentPrice = 50;
     
-    private static double pricePerHour = 50;
-    private String appointmentID;
+    private int id;
     private Customer customer;
-    private LocalDateTime time;
-    private AppointmentDuration duration;
+    private LocalDateTime dateTime;
     private String appliance;
     private Technician technician;
     private boolean paid;
     private String feedback;
     
     public Appointment(
-            String appointmentID,
             Customer customer,
-            LocalDateTime time,
-            AppointmentDuration duration,
+            LocalDateTime dateTime,
             String appliance,
-            Technician technician,
-            boolean paid,
-            String feedback
+            Technician technician
     ) {
-        this.appointmentID = appointmentID;
+        this.id = Appointment.getNextId();
         this.customer = customer;
-        this.time = time;
-        this.duration = duration;
+        this.dateTime = dateTime;
         this.appliance = appliance;
         this.technician = technician;
-        this.paid = paid;
-        this.feedback = feedback;
+        this.paid = false;
+        this.feedback = "";
     }
     
-    // Add in new method, check if last ID exists, if not, scan file and read existing IDs.
+    public int getDurationInHours() {
+        return Appointment.durationInHours;
+    }
     
-    // Store last ID as a new boolean method in this class or service center class
-    // Then run last ID and see if exists or not, if yes, increment 1, if not, check file and look at last line of ID and increment 1.
+    public double getAppointmentPrice() {
+        return Appointment.appointmentPrice;
+    }
     
-//    Implement feature to either randomly generate next ID or increment last ID
-    private static String getNextId() {
+    private static int getNextId() {
         try {
-            
             File appointmentFile = new File("data/" + Appointment.fileName);
             Scanner fileReader = new Scanner(appointmentFile);
             
             if(Appointment.fileName.length() == 0) {
                 int id = 1;
-                String idString = Integer.toString(id);
-                return idString;
+		return id;
             } else {
                 int biggestId = 0;
                 while(fileReader.hasNextLine()) {
                     String currentLine = fileReader.nextLine();
                     Appointment currentAppointment = Appointment.parse(currentLine);
-                    if(Integer.parseInt(currentAppointment.getAppointmentID()) > biggestId) {
-                        biggestId = Integer.parseInt(currentAppointment.getAppointmentID());
+                    if(currentAppointment.getId() > biggestId) {
+                        biggestId = currentAppointment.getId();
                     }
                 }
-                return Integer.toString(biggestId + 1);
+                return biggestId + 1;
             }
-            
-            
-            
         } catch (FileNotFoundException e){
             System.out.println("File not found: " + Appointment.fileName);
         }
-        
-        return null;
-        
+	
+	return 0;
     }
     
     
@@ -93,25 +84,24 @@ public class Appointment {
     public static Appointment parse(String appointmentLine) {
         String[] appointmentDetails = appointmentLine.split("\t");
         
-        String appointmentID = appointmentDetails[0];
+        String id = appointmentDetails[0];
         String customerUsername = appointmentDetails[1];
-        LocalDateTime time = LocalDateTime.parse(appointmentDetails[2]);
-        AppointmentDuration duration = AppointmentDuration.valueOf(appointmentDetails[3]);
-        String appliance = appointmentDetails[4];
-        String technicianUsername = appointmentDetails[5];
-        Boolean paid = Boolean.parseBoolean(appointmentDetails[6]);
-        String feedback = appointmentDetails[7];
+        LocalDateTime dateTime = LocalDateTime.parse(appointmentDetails[2]);
+        String appliance = appointmentDetails[3];
+        String technicianUsername = appointmentDetails[4];
+        Boolean paid = Boolean.parseBoolean(appointmentDetails[5]);
+        String feedback = appointmentDetails[6];
         
         Customer customer = Customer.get(customerUsername);
         Technician technician = Technician.get(technicianUsername);
         
-        return new Appointment(appointmentID, customer, time, duration, appliance, technician, paid, feedback);
+        return new Appointment(customer, dateTime, appliance, technician);
     }
     
     
     
 //    Return an appointment object from file
-    public static Appointment get(String appointmentID) {
+    public static Appointment get(int id) {
         
         try {
             File appointmentFile = new File("data/" + Appointment.fileName);
@@ -121,7 +111,7 @@ public class Appointment {
                 String currentLine = fileReader.nextLine();
                 Appointment currentAppointment = Appointment.parse(currentLine);
                 
-                if(currentAppointment.getAppointmentID().equals(appointmentID)) {
+                if(currentAppointment.getId() == id) {
                     return currentAppointment;
                 }
             }
@@ -133,28 +123,27 @@ public class Appointment {
         return null;
     }
     
-    public static String stringify(Appointment appointment, Customer customer, Technician technician) {
+    public static String stringify(Appointment appointment) {
         String result = "";
-        result += appointment.getAppointmentID();
-        result += customer.getUsername();
-        result += appointment.getTime();
-        result += appointment.getDuration();
+        result += appointment.getId();
+        result += appointment.getCustomer().getUsername();
+        result += appointment.getDateTime();
         result += appointment.getAppliance();
-        result += technician.getUsername();
-        result += appointment.getPaid();
+        result += appointment.getTechnician().getUsername();
+        result += appointment.isPaid();
         result += appointment.getFeedback();
         
         return result;
     }
     
-    public static boolean exists(String appointmentID) {
-        return Appointment.get(appointmentID) != null;
+    public static boolean exists(int id) {
+        return Appointment.get(id) != null;
     }
     
 //    Implement functionality to cancel appointment
-    public static void cancel(Appointment cancelAppointment, Customer customer, Technician technician) {
+    public static void cancel(Appointment appointmentToCancel) {
         
-        ArrayList<Appointment> appointments = new ArrayList<Appointment>();
+        ArrayList<Appointment> appointments = new ArrayList<>();
         
         try {
             File appointmentsFile = new File("data/" + Appointment.fileName);
@@ -164,29 +153,27 @@ public class Appointment {
                 String currentLine = fileScanner.nextLine();
                 Appointment currentAppointment = Appointment.parse(currentLine);
                 
-                if(!(currentAppointment.getAppointmentID().equals(cancelAppointment.getAppointmentID()))) {
+                if(!(currentAppointment.getId() == appointmentToCancel.getId())) {
                     appointments.add(currentAppointment);
                 }
             }
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("File not found: " + Appointment.fileName);
         }
         
         try {
             FileWriter fileWriter = new FileWriter("data/" + Appointment.fileName);
             for(Appointment appointment: appointments) {
-                fileWriter.write(Appointment.stringify(appointment, customer, technician));
+                fileWriter.write(Appointment.stringify(appointment));
             }
             fileWriter.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Could not write to file: " + Appointment.fileName);
         }
     }
     
-    public String getAppointmentID() {
-        return this.appointmentID;
+    public int getId() {
+        return this.id;
     }
     
     public Customer getCustomer() {
@@ -197,21 +184,12 @@ public class Appointment {
         this.customer = customer;
     }
     
-    public LocalDateTime getTime() {
-        return this.time;
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
     }
     
-    public void setTime(LocalDateTime time) {
-        this.time = time;
-    }
-    
-    // Add in the name of the enum as object type we declared in different class
-    public AppointmentDuration getDuration() {
-        return this.duration;
-    }
-    
-    public void setDuration(AppointmentDuration duration) {
-        this.duration = duration;
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
     
     public String getAppliance() {
@@ -231,9 +209,8 @@ public class Appointment {
     }
     
 //    Implement boolean to see if customer has paid or not
-    public boolean getPaid() {
-        // Add in functionality for this method
-        return true;
+    public boolean isPaid() {
+        return this.paid;
     }
     
     public String getFeedback() {

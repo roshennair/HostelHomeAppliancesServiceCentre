@@ -11,7 +11,7 @@ package com.mycompany.hostelhomeappliancesservicecentre;
 public class TechnicianMenu extends javax.swing.JFrame {
 
     /**
-     * Creates new form TechnicianMenu
+     * Creates new form TechnicianMainMenu
      */
     public TechnicianMenu() {
         initComponents();
@@ -28,12 +28,8 @@ public class TechnicianMenu extends javax.swing.JFrame {
 
         systemTitleLabel = new javax.swing.JLabel();
         formTitleLabel = new javax.swing.JLabel();
-        AppointmentIDMessage = new javax.swing.JLabel();
-        modifyAppointmentButton = new javax.swing.JButton();
-        cancelAppointmentButton = new javax.swing.JButton();
-        collectPaymentButton = new javax.swing.JButton();
-        collectFeedbackButton = new javax.swing.JButton();
-        generateReportButton = new javax.swing.JButton();
+        AppointmentSearchButton = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,41 +41,17 @@ public class TechnicianMenu extends javax.swing.JFrame {
         formTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         formTitleLabel.setText("Technician Menu");
 
-        AppointmentIDMessage.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        AppointmentIDMessage.setText("Appointment ID <number> exists");
-
-        modifyAppointmentButton.setText("Modify appointment details");
-        modifyAppointmentButton.addActionListener(new java.awt.event.ActionListener() {
+        AppointmentSearchButton.setText("Search for appointment");
+        AppointmentSearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyAppointmentButtonActionPerformed(evt);
+                AppointmentSearchButtonActionPerformed(evt);
             }
         });
 
-        cancelAppointmentButton.setText("Cancel appointment");
-        cancelAppointmentButton.addActionListener(new java.awt.event.ActionListener() {
+        logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelAppointmentButtonActionPerformed(evt);
-            }
-        });
-
-        collectPaymentButton.setText("Collect payment");
-        collectPaymentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                collectPaymentButtonActionPerformed(evt);
-            }
-        });
-
-        collectFeedbackButton.setText("Collect feedback");
-        collectFeedbackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                collectFeedbackButtonActionPerformed(evt);
-            }
-        });
-
-        generateReportButton.setText("Generate report");
-        generateReportButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generateReportButtonActionPerformed(evt);
+                logoutButtonActionPerformed(evt);
             }
         });
 
@@ -87,82 +59,47 @@ public class TechnicianMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(systemTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(AppointmentIDMessage)
-                            .addGap(129, 129, 129)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(systemTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(modifyAppointmentButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                                .addComponent(collectPaymentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cancelAppointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(collectFeedbackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(22, 22, 22))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(generateReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AppointmentSearchButton))
+                        .addGap(189, 189, 189))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(systemTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(AppointmentIDMessage)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(modifyAppointmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(collectPaymentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelAppointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(collectFeedbackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(generateReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(AppointmentSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modifyAppointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyAppointmentButtonActionPerformed
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_modifyAppointmentButtonActionPerformed
+        ServiceCentre.getInstance().logout();
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void cancelAppointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAppointmentButtonActionPerformed
+    private void AppointmentSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AppointmentSearchButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cancelAppointmentButtonActionPerformed
-
-    private void collectPaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectPaymentButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_collectPaymentButtonActionPerformed
-
-    private void collectFeedbackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectFeedbackButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_collectFeedbackButtonActionPerformed
-
-    private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_generateReportButtonActionPerformed
+    }//GEN-LAST:event_AppointmentSearchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,6 +127,7 @@ public class TechnicianMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TechnicianMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -200,13 +138,9 @@ public class TechnicianMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel AppointmentIDMessage;
-    private javax.swing.JButton cancelAppointmentButton;
-    private javax.swing.JButton collectFeedbackButton;
-    private javax.swing.JButton collectPaymentButton;
+    private javax.swing.JButton AppointmentSearchButton;
     private javax.swing.JLabel formTitleLabel;
-    private javax.swing.JButton generateReportButton;
-    private javax.swing.JButton modifyAppointmentButton;
+    private javax.swing.JButton logoutButton;
     private javax.swing.JLabel systemTitleLabel;
     // End of variables declaration//GEN-END:variables
 }

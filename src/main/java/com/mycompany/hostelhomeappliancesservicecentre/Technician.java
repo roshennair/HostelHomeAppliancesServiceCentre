@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -40,7 +41,6 @@ public class Technician extends Employee {
         return new Technician(username, name, dateOfBirth, password, salary);
     }
     
-//    To pass in username and locate line in file containing username
     public static Technician get(String username) {
         
         try {
@@ -61,6 +61,25 @@ public class Technician extends Employee {
         }
         
         return null;
+    }
+    
+    public static ArrayList<Technician> getAll() {
+	ArrayList<Technician> technicians = new ArrayList<Technician>();
+	
+	try {
+	    File techniciansFile = new File("data/" + Technician.fileName);
+	    Scanner fileScanner = new Scanner(techniciansFile);
+
+	    while (fileScanner.hasNextLine()) {
+		String currentLine = fileScanner.nextLine();
+		Technician currentTechnician = Technician.parse(currentLine);
+		technicians.add(currentTechnician);
+	    }
+	} catch (FileNotFoundException e) {
+	    System.out.println("File not found: " + Technician.fileName);
+	}
+	
+	return technicians;
     }
     
 //    To return a boolean to see if username and password correspond with object

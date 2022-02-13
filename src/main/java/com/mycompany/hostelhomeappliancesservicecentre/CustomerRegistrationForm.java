@@ -131,9 +131,20 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
         addressField.setColumns(20);
         addressField.setRows(5);
 
-        dayField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        int dayCount = this.getDayCount();
+        String[] days = new String[dayCount];
+        for (int i = 0; i < dayCount; i++) {
+            days[i] = String.valueOf(i + 1);
+        }
+        dayField.setModel(new javax.swing.DefaultComboBoxModel<>(days));
+        dayField.setModel(new javax.swing.DefaultComboBoxModel<>(days));
 
         monthField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        monthField.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                monthFieldItemStateChanged(evt);
+            }
+        });
 
         int minYear = 1900;
         int maxYear = 2022;
@@ -195,7 +206,7 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
                                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,6 +279,45 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
 	// TODO add your handling code here:
     }//GEN-LAST:event_bankCardFieldActionPerformed
 
+    private int getDayCount() {
+	Object selectedMonth = this.monthField.getSelectedItem();
+	if (selectedMonth == null) {
+	    selectedMonth = 1;
+	}
+	
+	int month = Integer.valueOf(selectedMonth.toString());
+		
+	int dayCount;
+	
+	switch (month) {
+	    case 1:
+	    case 3:
+	    case 5:
+	    case 7:
+	    case 8:
+	    case 10:
+	    case 12:
+		dayCount = 31;
+		break;
+	    case 2:
+		dayCount = 28;
+		break;
+	    default:
+		dayCount = 30;
+	}
+	
+	return dayCount;
+    }
+    
+    private void updateDayFieldDropdownValues() {
+	int dayCount = this.getDayCount();
+	String[] days = new String[dayCount];
+	for (int i = 0; i < dayCount; i++) {
+	    days[i] = String.valueOf(i + 1);
+	}
+	dayField.setModel(new javax.swing.DefaultComboBoxModel<>(days));
+    }
+    
     private void displayCustomerRegistrationSuccessMessage() {
 	JOptionPane.showMessageDialog(
 		this,
@@ -311,6 +361,10 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         ServiceCentre.getInstance().setCurrentWindow(new ManagerMenu());
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void monthFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_monthFieldItemStateChanged
+        this.updateDayFieldDropdownValues();
+    }//GEN-LAST:event_monthFieldItemStateChanged
 
     /**
      * @param args the command line arguments

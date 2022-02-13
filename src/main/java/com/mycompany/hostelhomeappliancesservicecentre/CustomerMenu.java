@@ -116,7 +116,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookAppointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookAppointmentButtonActionPerformed
-        ServiceCentre.getInstance().setCurrentWindow(null);
+        ServiceCentre.getInstance().setCurrentWindow(new AppointmentBookingForm());
     }//GEN-LAST:event_bookAppointmentButtonActionPerformed
 
     private void updateCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCustomerButtonActionPerformed
@@ -124,7 +124,8 @@ public class CustomerMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_updateCustomerButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        ServiceCentre.getInstance().setCurrentWindow(new CustomerSearchForm());
+        ServiceCentre.getInstance().setCurrentCustomer(null);
+	ServiceCentre.getInstance().setCurrentWindow(new CustomerSearchForm());
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**

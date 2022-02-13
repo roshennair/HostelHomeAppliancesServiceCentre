@@ -147,8 +147,8 @@ public class LoginForm extends javax.swing.JFrame {
 	    // login as technician
 	    if (Technician.authenticate(username, password)) {
                 ServiceCentre serviceCentre = ServiceCentre.getInstance();
-                serviceCentre.setCurrentEmployee(Manager.get(username));
-                serviceCentre.setCurrentWindow(new TechnicianMainMenu());
+                serviceCentre.setCurrentEmployee(Technician.get(username));
+                serviceCentre.setCurrentWindow(new TechnicianMenu());
 	    } else {
 		this.displayLoginErrorMessage();
 	    }
