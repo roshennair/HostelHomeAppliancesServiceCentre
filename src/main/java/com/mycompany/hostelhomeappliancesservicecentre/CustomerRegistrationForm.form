@@ -43,7 +43,6 @@
                               <Component id="nameLabel" alignment="0" pref="429" max="32767" attributes="0"/>
                               <Component id="nameField" alignment="0" max="32767" attributes="0"/>
                               <Component id="birthdayLabel" alignment="0" pref="429" max="32767" attributes="0"/>
-                              <Component id="phoneNumberField" alignment="0" max="32767" attributes="0"/>
                               <Component id="phoneNumberLabel" alignment="0" pref="429" max="32767" attributes="0"/>
                               <Component id="emailLabel" alignment="0" pref="429" max="32767" attributes="0"/>
                               <Component id="emailField" alignment="0" max="32767" attributes="0"/>
@@ -67,6 +66,11 @@
                                   <Component id="cancelButton" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="registerButton" min="-2" pref="100" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="countryCodeLabel" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="phoneNumberField" min="-2" pref="396" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -105,7 +109,10 @@
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Component id="phoneNumberLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="phoneNumberField" min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="phoneNumberField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="countryCodeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="emailLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -264,7 +271,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int dayCount = this.getDayCount();&#xa;String[] days = new String[dayCount];&#xa;for (int i = 0; i &lt; dayCount; i++) {&#xa;    days[i] = String.valueOf(i + 1);&#xa;}&#xa;dayField.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(days));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int dayCount = this.getDayCount();&#xa;String[] days = new String[dayCount];&#xa;for (int i = 0; i &lt; dayCount; i++) {&#xa;    days[i] = String.valueOf(i + 1);&#xa;}"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
@@ -315,6 +322,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="countryCodeLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+60"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

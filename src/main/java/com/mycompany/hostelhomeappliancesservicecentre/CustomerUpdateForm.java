@@ -63,11 +63,17 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
         phoneNumberLabel = new javax.swing.JLabel();
         dayField = new javax.swing.JComboBox<>();
         emailLabel = new javax.swing.JLabel();
+        countryCodeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Customer Modification Form");
 
         monthField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        monthField.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                monthFieldItemStateChanged(evt);
+            }
+        });
 
         emailField.setName("username"); // NOI18N
         emailField.addActionListener(new java.awt.event.ActionListener() {
@@ -160,9 +166,16 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
 
         phoneNumberLabel.setText("Phone number");
 
-        dayField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        int dayCount = this.getDayCount();
+        String[] days = new String[dayCount];
+        for (int i = 0; i < dayCount; i++) {
+            days[i] = String.valueOf(i + 1);
+        }
+        dayField.setModel(new javax.swing.DefaultComboBoxModel<>(days));
 
         emailLabel.setText("Email address");
+
+        countryCodeLabel.setText("+60");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,7 +198,6 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
                                 .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                                 .addComponent(nameField, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(birthdayLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
-                                .addComponent(phoneNumberField, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(phoneNumberLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                                 .addComponent(emailLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                                 .addComponent(emailField, javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +219,11 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(countryCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(phoneNumberField))))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -238,7 +254,9 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(phoneNumberLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(countryCodeLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(emailLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -273,6 +291,45 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bankCardFieldActionPerformed
 
+    private int getDayCount() {
+	Object selectedMonth = this.monthField.getSelectedItem();
+//	if (selectedMonth == null) {
+//	    selectedMonth = 1;
+//	}
+	
+	int month = Integer.valueOf(selectedMonth.toString());
+		
+	int dayCount;
+	
+	switch (month) {
+	    case 1:
+	    case 3:
+	    case 5:
+	    case 7:
+	    case 8:
+	    case 10:
+	    case 12:
+		dayCount = 31;
+		break;
+	    case 2:
+		dayCount = 28;
+		break;
+	    default:
+		dayCount = 30;
+	}
+	
+	return dayCount;
+    }
+    
+    private void updateDayFieldDropdownValues() {
+	int dayCount = this.getDayCount();
+	String[] days = new String[dayCount];
+	for (int i = 0; i < dayCount; i++) {
+	    days[i] = String.valueOf(i + 1);
+	}
+	dayField.setModel(new javax.swing.DefaultComboBoxModel<>(days));
+    }
+    
     private void displayCustomerUpdateSuccessMessage() {
 	JOptionPane.showMessageDialog(
 		this,
@@ -282,10 +339,10 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
 	);
     }
     
-    private void displayCustomerUpdateErrorMessage() {
+    private void displayCustomerUpdateErrorMessage(String message) {
 	JOptionPane.showMessageDialog(
 		this,
-		"Failed to update this customer's details.",
+		message,
 		"Customer Update Error",
 		JOptionPane.ERROR_MESSAGE
 	);
@@ -303,13 +360,24 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
 	String address = this.addressField.getText();
 	String bankCard = this.bankCardField.getText();
 
+	if (!Customer.isValidPhoneNumber(phoneNumber)) {
+	    this.displayCustomerUpdateErrorMessage("Phone numbers can only contain 8-10 digits after the +60 country code.");
+	    return;
+	} else if (!Customer.isValidEmail(email)) {
+	    this.displayCustomerUpdateErrorMessage("Email addresses can only contain letters, digits, dashes (-), dots (.), underscores (_) and 1 ampersand (@).");
+	    return;
+	} else if (!Customer.isValidBankCard(bankCard)) {
+	    this.displayCustomerUpdateErrorMessage("Bank card numbers can only contain 8-19 digits.");
+	    return;
+	}
+	
 	Customer updatedCustomer = new Customer(username, name, birthday, phoneNumber, email, address, bankCard);
 	
 	if (Customer.update(updatedCustomer)) {
 	    this.displayCustomerUpdateSuccessMessage();
 	    ServiceCentre.getInstance().setCurrentWindow(new CustomerMenu());
 	} else {
-	    this.displayCustomerUpdateErrorMessage();
+	    this.displayCustomerUpdateErrorMessage("Failed to update this customer's details.");
 	}
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -324,6 +392,10 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
     private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameFieldActionPerformed
+
+    private void monthFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_monthFieldItemStateChanged
+        this.updateDayFieldDropdownValues();
+    }//GEN-LAST:event_monthFieldItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -368,6 +440,7 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
     private javax.swing.JLabel bankCardLabel;
     private javax.swing.JLabel birthdayLabel;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel countryCodeLabel;
     private javax.swing.JComboBox<String> dayField;
     private javax.swing.JLabel dayLabel;
     private javax.swing.JTextField emailField;

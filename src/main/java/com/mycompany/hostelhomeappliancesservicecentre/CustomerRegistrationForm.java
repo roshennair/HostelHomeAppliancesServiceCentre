@@ -52,6 +52,7 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
         monthField = new javax.swing.JComboBox<>();
         yearField = new javax.swing.JComboBox<>();
         cancelButton = new javax.swing.JButton();
+        countryCodeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Customer Registration Form");
@@ -137,7 +138,6 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
             days[i] = String.valueOf(i + 1);
         }
         dayField.setModel(new javax.swing.DefaultComboBoxModel<>(days));
-        dayField.setModel(new javax.swing.DefaultComboBoxModel<>(days));
 
         monthField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         monthField.addItemListener(new java.awt.event.ItemListener() {
@@ -162,6 +162,8 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
             }
         });
 
+        countryCodeLabel.setText("+60");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -183,7 +185,6 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
                                 .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                                 .addComponent(nameField, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(birthdayLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
-                                .addComponent(phoneNumberField, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(phoneNumberLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                                 .addComponent(emailLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                                 .addComponent(emailField, javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +206,11 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(countryCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -236,7 +241,9 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(phoneNumberLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(countryCodeLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(emailLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -327,10 +334,10 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
 	);
     }
     
-    private void displayCustomerRegistrationErrorMessage() {
+    private void displayCustomerRegistrationErrorMessage(String message) {
 	JOptionPane.showMessageDialog(
 		this,
-		"This customer username has already been taken.",
+		message,
 		"Customer Registration Error",
 		JOptionPane.ERROR_MESSAGE
 	);
@@ -343,18 +350,29 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
 	int month = Integer.valueOf(this.monthField.getSelectedItem().toString());
 	int day = Integer.valueOf(this.dayField.getSelectedItem().toString());
 	LocalDate birthday = LocalDate.of(year, month, day);
-	String phoneNumber = this.phoneNumberField.getText();
+	String phoneNumber = "+60" + this.phoneNumberField.getText();
 	String email = this.emailField.getText();
 	String address = this.addressField.getText();
 	String bankCard = this.bankCardField.getText();
 
+	if (!Customer.isValidPhoneNumber(phoneNumber)) {
+	    this.displayCustomerRegistrationErrorMessage("Phone numbers can only contain 8-10 digits after the +60 country code.");
+	    return;
+	} else if (!Customer.isValidEmail(email)) {
+	    this.displayCustomerRegistrationErrorMessage("Email addresses can only contain letters, digits, dashes (-), dots (.), underscores (_) and 1 ampersand (@).");
+	    return;
+	} else if (!Customer.isValidBankCard(bankCard)) {
+	    this.displayCustomerRegistrationErrorMessage("Bank card numbers can only contain 8-19 digits.");
+	    return;
+	}
+	
 	Customer newCustomer = new Customer(username, name, birthday, phoneNumber, email, address, bankCard);
 	
 	if (Customer.register(newCustomer)) {
 	    this.displayCustomerRegistrationSuccessMessage();
 	    ServiceCentre.getInstance().setCurrentWindow(new ManagerMenu());
 	} else {
-	    this.displayCustomerRegistrationErrorMessage();
+	    this.displayCustomerRegistrationErrorMessage("This customer username has already been taken.");
 	}
     }//GEN-LAST:event_registerButtonActionPerformed
 
@@ -408,6 +426,7 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel bankCardLabel;
     private javax.swing.JLabel birthdayLabel;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel countryCodeLabel;
     private javax.swing.JComboBox<String> dayField;
     private javax.swing.JLabel dayLabel;
     private javax.swing.JTextField emailField;
