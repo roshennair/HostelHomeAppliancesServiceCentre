@@ -34,11 +34,11 @@ public class Technician extends Employee {
         
         String username = technicianDetails[0];
         String name = technicianDetails[1];
-        LocalDate dateOfBirth = LocalDate.parse(technicianDetails[2]);
+        LocalDate birthday = LocalDate.parse(technicianDetails[2]);
         String password = technicianDetails[3];
         double salary = Double.parseDouble(technicianDetails[4]);
         
-        return new Technician(username, name, dateOfBirth, password, salary);
+        return new Technician(username, name, birthday, password, salary);
     }
     
     public static Technician get(String username) {

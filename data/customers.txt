@@ -2,3 +2,4 @@ cust1	Hasan D. Piker	1900-10-18	011-55018109	hasanthehun@outlook.com	No. 3, Emer
 cust2	Michael Reeves	2003-01-07	012-4828390	michael.reeves@gmail.com	No. 7, Newell Road	7593390508484573
 roshennair	Roshen Nair	2001-10-18	+601155018109	roshen620@gmail.com	No. 5, Jalan RJ 1/1	1234567890123456
 cust3	Arvind	2015-07-01	039-29588593	arvind@gmail.com	No. 5, Taman Teknologi	2903885357239085
+Test	Tester	1980-02-25	0123456789	test@mail.com	Area 51	4827493758491057

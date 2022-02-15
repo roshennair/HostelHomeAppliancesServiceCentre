@@ -224,6 +224,9 @@
           <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(years)" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="yearFieldActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int minYear = 1900;&#xa;int maxYear = 2022;&#xa;String[] years = new String[maxYear - minYear + 1];&#xa;for (int i = 0, j = minYear; j &lt;= maxYear; i++, j++) {&#xa;    years[i] = String.valueOf(j);&#xa;}"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

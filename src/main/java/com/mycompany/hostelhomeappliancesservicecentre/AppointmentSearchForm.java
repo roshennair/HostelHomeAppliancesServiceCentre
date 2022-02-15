@@ -4,6 +4,12 @@
  */
 package com.mycompany.hostelhomeappliancesservicecentre;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author arvin
@@ -30,8 +36,8 @@ public class AppointmentSearchForm extends javax.swing.JFrame {
         formTitleLabel = new javax.swing.JLabel();
         appointmentSearchLabel = new javax.swing.JLabel();
         appointmentSearchField = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        appointmentsTableScrollPane = new javax.swing.JScrollPane();
+        appointmentsTable = new javax.swing.JTable();
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,19 +57,57 @@ public class AppointmentSearchForm extends javax.swing.JFrame {
                 appointmentSearchFieldActionPerformed(evt);
             }
         });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        appointmentSearchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                appointmentSearchFieldKeyReleased(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        });
+
+        ArrayList<Appointment> appointments = Appointment.getAll();
+        Object[][] appointmentData = new Object[appointments.size()][7];
+
+        for(int i = 0; i < appointments.size(); i++) {
+            int id = appointments.get(i).getId();
+            String customerUsername = appointments.get(i).getCustomer().getUsername();
+            LocalDateTime dateTime = appointments.get(i).getDateTime();
+            String appliance = appointments.get(i).getAppliance();
+            String technicianUsername = appointments.get(i).getTechnician().getUsername();
+            boolean paid = appointments.get(i).isPaid();
+            String feedback = appointments.get(i).getFeedback();
+
+            Object[] currentAppointment = {id, customerUsername, dateTime, appliance, technicianUsername, paid, feedback};
+            appointmentData[i] = currentAppointment;
+
+        }
+        appointmentsTable.setModel(new javax.swing.table.DefaultTableModel(
+            appointmentData,
+            new String [] {
+                "Appointment ID", "Customer Username", "Date and Time", "Appliance", "Technician Username", "Paid", "Feedback"
+            }
+        ) {
+
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+
+        });
+        appointmentsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                appointmentsTableMouseClicked(evt);
+            }
+        });
+        appointmentsTableScrollPane.setViewportView(appointmentsTable);
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +138,7 @@ public class AppointmentSearchForm extends javax.swing.JFrame {
                         .addGap(142, 142, 142)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(appointmentSearchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1)
+                            .addComponent(appointmentsTableScrollPane)
                             .addComponent(appointmentSearchField))))
                 .addGap(0, 142, Short.MAX_VALUE))
         );
@@ -110,7 +154,7 @@ public class AppointmentSearchForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(appointmentSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(appointmentsTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -130,6 +174,30 @@ public class AppointmentSearchForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         ServiceCentre.getInstance().setCurrentWindow(new TechnicianMenu());
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void search(String searchString) {
+	DefaultTableModel appointmentsTableModel = (DefaultTableModel) this.appointmentsTable.getModel();
+	TableRowSorter<DefaultTableModel> rowSorter = new TableRowSorter<>(appointmentsTableModel);
+	this.appointmentsTable.setRowSorter(rowSorter);
+	rowSorter.setRowFilter(RowFilter.regexFilter(searchString));
+    }
+    
+    private void appointmentSearchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_appointmentSearchFieldKeyReleased
+        // TODO add your handling code here:
+        String searchString = this.appointmentSearchField.getText();
+	this.search(searchString);
+    }//GEN-LAST:event_appointmentSearchFieldKeyReleased
+
+    private void appointmentsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appointmentsTableMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = this.appointmentsTable.getSelectedRow();
+	
+	if (selectedRow != -1) {
+	    String selectedAppointmentId = String.valueOf(this.appointmentsTable.getValueAt(selectedRow, 0));
+	    ServiceCentre.getInstance().setCurrentAppointment(Appointment.get(Integer.parseInt(selectedAppointmentId)));
+	    ServiceCentre.getInstance().setCurrentWindow(new AppointmentMenu());
+	}
+    }//GEN-LAST:event_appointmentsTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -170,10 +238,10 @@ public class AppointmentSearchForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField appointmentSearchField;
     private javax.swing.JLabel appointmentSearchLabel;
+    private javax.swing.JTable appointmentsTable;
+    private javax.swing.JScrollPane appointmentsTableScrollPane;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel formTitleLabel;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel systemTitleLabel;
     // End of variables declaration//GEN-END:variables
 }

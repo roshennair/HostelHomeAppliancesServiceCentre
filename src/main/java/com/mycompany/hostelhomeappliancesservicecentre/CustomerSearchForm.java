@@ -103,6 +103,11 @@ public class CustomerSearchForm extends javax.swing.JFrame {
         customersTableScrollPane.setViewportView(customersTable);
         customersTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
+        customerSearchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerSearchFieldActionPerformed(evt);
+            }
+        });
         customerSearchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 customerSearchFieldKeyReleased(evt);
@@ -184,6 +189,10 @@ public class CustomerSearchForm extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         ServiceCentre.getInstance().setCurrentWindow(new ManagerMenu());
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void customerSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerSearchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customerSearchFieldActionPerformed
     
     /**
      * @param args the command line arguments

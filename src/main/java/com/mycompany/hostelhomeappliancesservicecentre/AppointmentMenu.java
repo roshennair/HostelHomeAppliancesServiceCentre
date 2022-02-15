@@ -4,6 +4,8 @@
  */
 package com.mycompany.hostelhomeappliancesservicecentre;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author arvin
@@ -28,12 +30,13 @@ public class AppointmentMenu extends javax.swing.JFrame {
 
         systemTitleLabel = new javax.swing.JLabel();
         formTitleLabel = new javax.swing.JLabel();
-        AppointmentIDMessage = new javax.swing.JLabel();
         modifyAppointmentButton = new javax.swing.JButton();
         cancelAppointmentButton = new javax.swing.JButton();
         collectPaymentButton = new javax.swing.JButton();
         collectFeedbackButton = new javax.swing.JButton();
         generateReportButton = new javax.swing.JButton();
+        formTitleLabel1 = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,9 +47,6 @@ public class AppointmentMenu extends javax.swing.JFrame {
         formTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         formTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         formTitleLabel.setText("Appointment Menu");
-
-        AppointmentIDMessage.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        AppointmentIDMessage.setText("Appointment ID <number> exists");
 
         modifyAppointmentButton.setText("Modify appointment details");
         modifyAppointmentButton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +83,17 @@ public class AppointmentMenu extends javax.swing.JFrame {
             }
         });
 
+        formTitleLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        formTitleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        formTitleLabel1.setText("Appointment ID: " + ServiceCentre.getInstance().getCurrentAppointment().getId());
+
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,15 +101,15 @@ public class AppointmentMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(systemTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(AppointmentIDMessage)
-                            .addGap(129, 129, 129)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(systemTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(generateReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(modifyAppointmentButton)
@@ -110,13 +121,11 @@ public class AppointmentMenu extends javax.swing.JFrame {
                                 .addComponent(collectFeedbackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(22, 22, 22))))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(formTitleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(116, 116, 116)
-                        .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(generateReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,17 +136,19 @@ public class AppointmentMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(AppointmentIDMessage)
-                .addGap(33, 33, 33)
+                .addComponent(formTitleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(modifyAppointmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(collectPaymentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelAppointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(collectFeedbackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(generateReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generateReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -146,24 +157,44 @@ public class AppointmentMenu extends javax.swing.JFrame {
 
     private void modifyAppointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyAppointmentButtonActionPerformed
         // TODO add your handling code here:
+        ServiceCentre.getInstance().setCurrentWindow(new AppointmentUpdateForm());
     }//GEN-LAST:event_modifyAppointmentButtonActionPerformed
 
     private void cancelAppointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAppointmentButtonActionPerformed
         // TODO add your handling code here:
+        Appointment.cancel(ServiceCentre.getInstance().getCurrentAppointment());
+        this.cancelAppointmentSuccessMessage();
     }//GEN-LAST:event_cancelAppointmentButtonActionPerformed
 
     private void collectPaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectPaymentButtonActionPerformed
         // TODO add your handling code here:
+        ServiceCentre.getInstance().setCurrentWindow(new CollectPaymentForm());
     }//GEN-LAST:event_collectPaymentButtonActionPerformed
 
     private void collectFeedbackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectFeedbackButtonActionPerformed
         // TODO add your handling code here:
+        ServiceCentre.getInstance().setCurrentWindow(new CollectFeedbackForm());
     }//GEN-LAST:event_collectFeedbackButtonActionPerformed
 
     private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_generateReportButtonActionPerformed
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        ServiceCentre.getInstance().setCurrentAppointment(null);
+        ServiceCentre.getInstance().setCurrentWindow(new TechnicianMenu());
+    }//GEN-LAST:event_backButtonActionPerformed
+    
+    private void cancelAppointmentSuccessMessage() {
+        JOptionPane.showMessageDialog(
+                this, 
+                "Appointment successfully cancelled!",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -201,11 +232,12 @@ public class AppointmentMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel AppointmentIDMessage;
+    private javax.swing.JButton backButton;
     private javax.swing.JButton cancelAppointmentButton;
     private javax.swing.JButton collectFeedbackButton;
     private javax.swing.JButton collectPaymentButton;
     private javax.swing.JLabel formTitleLabel;
+    private javax.swing.JLabel formTitleLabel1;
     private javax.swing.JButton generateReportButton;
     private javax.swing.JButton modifyAppointmentButton;
     private javax.swing.JLabel systemTitleLabel;

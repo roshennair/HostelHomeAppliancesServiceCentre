@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -44,6 +45,23 @@ public class Appointment {
         this.paid = false;
         this.feedback = "";
     }
+    
+    public Appointment(
+            int id,
+            Customer customer,
+            LocalDateTime dateTime,
+            String appliance,
+            Technician technician
+    ) {
+        this.id = id;
+        this.customer = customer;
+        this.dateTime = dateTime;
+        this.appliance = appliance;
+        this.technician = technician;
+        this.paid = false;
+        this.feedback = "";
+    }
+    
     
     public int getDurationInHours() {
         return Appointment.durationInHours;
@@ -84,8 +102,10 @@ public class Appointment {
     public static Appointment parse(String appointmentLine) {
         String[] appointmentDetails = appointmentLine.split("\t");
         
-        String id = appointmentDetails[0];
+        int id = Integer.parseInt(appointmentDetails[0]);
         String customerUsername = appointmentDetails[1];
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        LocalDateTime dateTime = LocalDateTime.parse(appointmentDetails[2], formatter);
         LocalDateTime dateTime = LocalDateTime.parse(appointmentDetails[2]);
         String appliance = appointmentDetails[3];
         String technicianUsername = appointmentDetails[4];
@@ -95,7 +115,7 @@ public class Appointment {
         Customer customer = Customer.get(customerUsername);
         Technician technician = Technician.get(technicianUsername);
         
-        return new Appointment(customer, dateTime, appliance, technician);
+        return new Appointment(id, customer, dateTime, appliance, technician);
     }
     
     
@@ -125,19 +145,35 @@ public class Appointment {
     
     public static String stringify(Appointment appointment) {
         String result = "";
-        result += appointment.getId();
-        result += appointment.getCustomer().getUsername();
-        result += appointment.getDateTime();
-        result += appointment.getAppliance();
-        result += appointment.getTechnician().getUsername();
-        result += appointment.isPaid();
-        result += appointment.getFeedback();
+        result += Integer.toString(appointment.getId()) + "\t";
+        result += appointment.getCustomer().getUsername() + "\t";
+        result += appointment.getDateTime() + "\t";
+        result += appointment.getAppliance() + "\t";
+        result += appointment.getTechnician().getUsername() + "\t";
+        result += appointment.isPaid() + "\t";
+        result += appointment.getFeedback() + "\n";
         
         return result;
     }
     
-    public static boolean exists(int id) {
-        return Appointment.get(id) != null;
+    
+    public static ArrayList<Appointment> getAll() {
+	ArrayList<Appointment> appointments = new ArrayList<>();
+	
+	try {
+	    File appointmentsFile = new File("data/" + Appointment.fileName);
+	    Scanner fileScanner = new Scanner(appointmentsFile);
+
+	    while (fileScanner.hasNextLine()) {
+		String currentLine = fileScanner.nextLine();
+		Appointment currentAppointment = Appointment.parse(currentLine);
+		appointments.add(currentAppointment);
+	    }
+	} catch (FileNotFoundException e) {
+	    System.out.println("File not found: " + Appointment.fileName);
+	}
+	
+	return appointments;
     }
     
 //    Implement functionality to cancel appointment
@@ -170,6 +206,90 @@ public class Appointment {
         } catch (IOException e) {
             System.out.println("Could not write to file: " + Appointment.fileName);
         }
+    }
+    
+    public static boolean book(Appointment appointmentToBook) {
+        
+        if(slotAvailable(appointmentToBook)) {
+            try {
+		// create file writer with append mode enabled
+		FileWriter fileWriter = new FileWriter("data/" + Appointment.fileName, true);
+		fileWriter.write(Appointment.stringify(appointmentToBook));
+		fileWriter.close();
+		return true;
+	    } catch (IOException e) {
+		System.out.println("Could not write to file: " + Appointment.fileName);
+	    }
+        }
+        
+        return false;
+        
+    }
+    
+    public static boolean slotAvailable(Appointment appointmentToCheck) {
+        
+        try {
+            File appointmentsFile = new File("data/" + Appointment.fileName);
+            Scanner fileScanner = new Scanner(appointmentsFile);
+            
+            while(fileScanner.hasNextLine()) {
+                String currentLine = fileScanner.nextLine();
+                Appointment currentAppointment = Appointment.parse(currentLine);
+                
+                if ((currentAppointment.getDateTime().equals(appointmentToCheck.getDateTime())) 
+                        && (currentAppointment.getTechnician().equals(appointmentToCheck.getTechnician()))) {
+                    return false;
+                }
+            }
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + Appointment.fileName);
+        }
+        
+        
+        return true;
+    }
+    
+    public static boolean exists(int appointmentId) {
+	return Appointment.get(appointmentId) != null;
+    }
+    
+    public static boolean update(Appointment updatedAppointment) {	
+	if (Appointment.exists(updatedAppointment.getId())) {
+	    ArrayList<Appointment> appointments = new ArrayList<>();
+	    
+	    try {
+		File appointmentsFile = new File("data/" + Appointment.fileName);
+		Scanner fileScanner = new Scanner(appointmentsFile);
+
+		while (fileScanner.hasNextLine()) {
+		    String currentLine = fileScanner.nextLine();
+                    Appointment currentAppointment = Appointment.parse(currentLine);
+                    
+		    // if matching username, replace with updated customer
+		    if (currentAppointment.getId() == updatedAppointment.getId()) {
+			appointments.add(updatedAppointment);
+		    } else {
+			appointments.add(currentAppointment);
+		    }
+		}
+	    } catch (FileNotFoundException e) {
+		System.out.println("File not found: " + Appointment.fileName);
+	    }
+
+	    try {
+		FileWriter fileWriter = new FileWriter("data/" + Appointment.fileName);
+		for (Appointment appointment: appointments) {   
+		    fileWriter.write(Appointment.stringify(appointment));
+		}
+		fileWriter.close();
+		return true;
+	    } catch (IOException e) {
+		System.out.println("Could not write to file: " + Appointment.fileName);
+	    }
+	}
+	
+	return false;
     }
     
     public int getId() {
@@ -208,9 +328,12 @@ public class Appointment {
         this.technician = technician;
     }
     
-//    Implement boolean to see if customer has paid or not
     public boolean isPaid() {
         return this.paid;
+    }
+    
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
     
     public String getFeedback() {

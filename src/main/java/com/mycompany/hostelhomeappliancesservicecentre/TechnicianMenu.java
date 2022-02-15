@@ -30,6 +30,7 @@ public class TechnicianMenu extends javax.swing.JFrame {
         formTitleLabel = new javax.swing.JLabel();
         AppointmentSearchButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
+        formTitleLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,7 +40,7 @@ public class TechnicianMenu extends javax.swing.JFrame {
 
         formTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         formTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formTitleLabel.setText("Technician Menu");
+        formTitleLabel.setText("Welcome, " + com.mycompany.hostelhomeappliancesservicecentre.ServiceCentre.getInstance().getCurrentEmployee().getName());
 
         AppointmentSearchButton.setText("Search for appointment");
         AppointmentSearchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -55,34 +56,44 @@ public class TechnicianMenu extends javax.swing.JFrame {
             }
         });
 
+        formTitleLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        formTitleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        formTitleLabel1.setText("Technician Menu");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(systemTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AppointmentSearchButton))
-                        .addGap(189, 189, 189))))
+                        .addGap(189, 189, 189))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(systemTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(formTitleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(systemTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(formTitleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(AppointmentSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,6 +110,7 @@ public class TechnicianMenu extends javax.swing.JFrame {
 
     private void AppointmentSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AppointmentSearchButtonActionPerformed
         // TODO add your handling code here:
+        ServiceCentre.getInstance().setCurrentWindow(new AppointmentSearchForm());
     }//GEN-LAST:event_AppointmentSearchButtonActionPerformed
 
     /**
@@ -140,6 +152,7 @@ public class TechnicianMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AppointmentSearchButton;
     private javax.swing.JLabel formTitleLabel;
+    private javax.swing.JLabel formTitleLabel1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel systemTitleLabel;
     // End of variables declaration//GEN-END:variables

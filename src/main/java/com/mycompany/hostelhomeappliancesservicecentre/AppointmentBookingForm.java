@@ -116,6 +116,11 @@ public class AppointmentBookingForm extends javax.swing.JFrame {
             years[i] = String.valueOf(j);
         }
         yearField.setModel(new javax.swing.DefaultComboBoxModel<>(years));
+        yearField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearFieldActionPerformed(evt);
+            }
+        });
 
         yearLabel.setText("Year");
 
@@ -317,6 +322,10 @@ public class AppointmentBookingForm extends javax.swing.JFrame {
     private void monthFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_monthFieldItemStateChanged
         this.updateDayFieldDropdownValues();
     }//GEN-LAST:event_monthFieldItemStateChanged
+
+    private void yearFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearFieldActionPerformed
 
     /**
      * @param args the command line arguments
