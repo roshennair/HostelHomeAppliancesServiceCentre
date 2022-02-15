@@ -228,7 +228,7 @@ public class Appointment {
                 
                 if ((currentAppointment.getDateTime().isEqual(appointmentToCheck.getDateTime())) 
                         && ((currentAppointment.getTechnician().getUsername().equals(appointmentToCheck.getTechnician().getUsername())) || 
-                        currentAppointment.getCustomer().getUsername().equals(appointmentToCheck.getCustomer().getUsername()))) {
+                        currentAppointment.getCustomer().getUsername().equals(appointmentToCheck.getCustomer().getUsername()))){
                     return false;
                 }
             }

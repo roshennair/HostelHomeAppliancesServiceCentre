@@ -283,7 +283,7 @@ public class AppointmentUpdateForm extends javax.swing.JFrame {
 
         if (Appointment.update(updatedAppointment)) {
             this.displayAppointmentUpdatedSuccessMessage();
-            ServiceCentre.getInstance().setCurrentWindow(new ManagerMenu());
+            ServiceCentre.getInstance().setCurrentWindow(new AppointmentMenu());
         } else {
             this.displayAppointmentUpdatedErrorMessage();
         }

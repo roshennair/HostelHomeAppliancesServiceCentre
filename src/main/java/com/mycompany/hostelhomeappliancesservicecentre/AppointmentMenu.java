@@ -179,6 +179,7 @@ public class AppointmentMenu extends javax.swing.JFrame {
 
     private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
         // TODO add your handling code here:
+        ServiceCentre.getInstance().setCurrentWindow(new ReportGenerationForm());
     }//GEN-LAST:event_generateReportButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
