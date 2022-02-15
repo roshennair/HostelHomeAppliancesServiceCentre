@@ -43,7 +43,7 @@ public class Appointment {
         this.appliance = appliance;
         this.technician = technician;
         this.paid = false;
-        this.feedback = "";
+        this.feedback = " ";
     }
     
     public Appointment(
@@ -51,15 +51,17 @@ public class Appointment {
             Customer customer,
             LocalDateTime dateTime,
             String appliance,
-            Technician technician
+            Technician technician,
+            boolean paid,
+            String feedback
     ) {
         this.id = id;
         this.customer = customer;
         this.dateTime = dateTime;
         this.appliance = appliance;
         this.technician = technician;
-        this.paid = false;
-        this.feedback = "";
+        this.paid = paid;
+        this.feedback = feedback;
     }
     
         private static int getNextId() {
@@ -95,8 +97,6 @@ public class Appointment {
         
         int id = Integer.parseInt(appointmentDetails[0]);
         String customerUsername = appointmentDetails[1];
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-//        LocalDateTime dateTime = LocalDateTime.parse(appointmentDetails[2], formatter);
         LocalDateTime dateTime = LocalDateTime.parse(appointmentDetails[2]);
         String appliance = appointmentDetails[3];
         String technicianUsername = appointmentDetails[4];
@@ -106,7 +106,7 @@ public class Appointment {
         Customer customer = Customer.get(customerUsername);
         Technician technician = Technician.get(technicianUsername);
         
-        return new Appointment(id, customer, dateTime, appliance, technician);
+        return new Appointment(id, customer, dateTime, appliance, technician, paid, feedback);
     }
     
     
@@ -226,8 +226,9 @@ public class Appointment {
                 String currentLine = fileScanner.nextLine();
                 Appointment currentAppointment = Appointment.parse(currentLine);
                 
-                if ((currentAppointment.getDateTime().equals(appointmentToCheck.getDateTime())) 
-                        && (currentAppointment.getTechnician().equals(appointmentToCheck.getTechnician()))) {
+                if ((currentAppointment.getDateTime().isEqual(appointmentToCheck.getDateTime())) 
+                        && ((currentAppointment.getTechnician().getUsername().equals(appointmentToCheck.getTechnician().getUsername())) || 
+                        currentAppointment.getCustomer().getUsername().equals(appointmentToCheck.getCustomer().getUsername()))) {
                     return false;
                 }
             }
@@ -245,7 +246,7 @@ public class Appointment {
     }
     
     public static boolean update(Appointment updatedAppointment) {	
-	if (Appointment.exists(updatedAppointment.getId())) {
+	if (Appointment.exists(updatedAppointment.getId()) && Appointment.slotAvailable(updatedAppointment)) {
 	    ArrayList<Appointment> appointments = new ArrayList<>();
 	    
 	    try {
@@ -256,7 +257,6 @@ public class Appointment {
 		    String currentLine = fileScanner.nextLine();
                     Appointment currentAppointment = Appointment.parse(currentLine);
                     
-		    // if matching username, replace with updated customer
 		    if (currentAppointment.getId() == updatedAppointment.getId()) {
 			appointments.add(updatedAppointment);
 		    } else {

@@ -115,6 +115,7 @@ public class CollectFeedbackForm extends javax.swing.JFrame {
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
         ServiceCentre.getInstance().getCurrentAppointment().setFeedback(feedbackTextArea.getText());
+        Appointment.update(ServiceCentre.getInstance().getCurrentAppointment());
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

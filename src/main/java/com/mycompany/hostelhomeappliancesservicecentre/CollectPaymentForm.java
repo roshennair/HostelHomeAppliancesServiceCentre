@@ -15,7 +15,8 @@ public class CollectPaymentForm extends javax.swing.JFrame {
      */
     public CollectPaymentForm() {
         initComponents();
-        Customer currentCustomer = ServiceCentre.getInstance().getCurrentCustomer();
+        Customer currentCustomer = ServiceCentre.getInstance().getCurrentAppointment().getCustomer();
+        Appointment currentAppointment = ServiceCentre.getInstance().getCurrentAppointment();
         this.bankCardField.setText(currentCustomer.getBankCard());
     }
 
@@ -123,6 +124,7 @@ public class CollectPaymentForm extends javax.swing.JFrame {
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
         // TODO add your handling code here:
         ServiceCentre.getInstance().getCurrentAppointment().setPaid(true);
+        Appointment.update(ServiceCentre.getInstance().getCurrentAppointment());
     }//GEN-LAST:event_payButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

@@ -24,10 +24,9 @@ public class AppointmentUpdateForm extends javax.swing.JFrame {
         this.dayField.getModel().setSelectedItem(dateTime.getDayOfMonth());
 	this.monthField.getModel().setSelectedItem(dateTime.getMonthValue());
 	this.yearField.getModel().setSelectedItem(dateTime.getYear());
+        this.timeField.getModel().setSelectedItem(dateTime.getHour() + ":00");
         this.applianceField.setText(currentAppointment.getAppliance());
         this.technicianField.getModel().setSelectedItem(currentAppointment.getTechnician().getUsername());
-        
-        
     }
 
     /**
@@ -65,7 +64,7 @@ public class AppointmentUpdateForm extends javax.swing.JFrame {
 
         formTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         formTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formTitleLabel.setText("Appointment Booking Form");
+        formTitleLabel.setText("Appointment Update Form");
         formTitleLabel.setPreferredSize(new java.awt.Dimension(551, 434));
 
         dateLabel.setText("Date:");
@@ -242,14 +241,14 @@ public class AppointmentUpdateForm extends javax.swing.JFrame {
     }//GEN-LAST:event_technicianFieldActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        ServiceCentre.getInstance().setCurrentWindow(new CustomerMenu());
+        ServiceCentre.getInstance().setCurrentWindow(new AppointmentMenu());
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void displayAppointmentUpdatedSuccessMessage() {
 	JOptionPane.showMessageDialog(
 		this,
-		"The appointment was successfully booked!",
-		"Appointment Booking Success",
+		"The appointment was successfully updated!",
+		"Appointment Update Success",
 		JOptionPane.INFORMATION_MESSAGE
 	);
     }
@@ -258,13 +257,18 @@ public class AppointmentUpdateForm extends javax.swing.JFrame {
 	JOptionPane.showMessageDialog(
 		this,
 		"This appointment slot has already been taken.",
-		"Appointment Booking Error",
+		"Appointment Update Error",
 		JOptionPane.ERROR_MESSAGE
 	);
     }
     
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-	Customer customer = ServiceCentre.getInstance().getCurrentCustomer();
+	
+        Appointment currentAppointment = ServiceCentre.getInstance().getCurrentAppointment();
+        Customer customer = currentAppointment.getCustomer();
+        int id = currentAppointment.getId();
+        boolean paid = currentAppointment.isPaid();
+        String feedback = currentAppointment.getFeedback();
 	int year = Integer.valueOf(this.yearField.getSelectedItem().toString());
         int month = Integer.valueOf(this.monthField.getSelectedItem().toString());
         int day = Integer.valueOf(this.dayField.getSelectedItem().toString());
@@ -275,7 +279,7 @@ public class AppointmentUpdateForm extends javax.swing.JFrame {
 	String technicianUsername = this.technicianField.getSelectedItem().toString();
 	Technician technician = Technician.get(technicianUsername);
 	
-	Appointment updatedAppointment = new Appointment(customer, dateTime, appliance, technician);
+	Appointment updatedAppointment = new Appointment(id, customer, dateTime, appliance, technician, paid, feedback);
 
         if (Appointment.update(updatedAppointment)) {
             this.displayAppointmentUpdatedSuccessMessage();
