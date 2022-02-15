@@ -62,11 +62,4 @@ public class Manager extends Employee {
         return matchingManager != null && matchingManager.getPassword().equals(password);
     }
 
-    // TODO: Implement customer registration via GUI form
-    public void registerCustomer() {
-    }
-
-    // TODO: Implement customer search functionality via GUI form
-    public void searchCustomer() {
-    }
 }

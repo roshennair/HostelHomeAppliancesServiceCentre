@@ -21,7 +21,6 @@ public class ServiceCentre {
 	if (ServiceCentre.serviceCentreInstance == null) {
 	    ServiceCentre.serviceCentreInstance = new ServiceCentre();
 	}
-	
 	return ServiceCentre.serviceCentreInstance;
     }
     

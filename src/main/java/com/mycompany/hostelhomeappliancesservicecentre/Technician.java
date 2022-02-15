@@ -88,9 +88,5 @@ public class Technician extends Employee {
         return matchingTechnician != null && matchingTechnician.getPassword().equals(password);
     }
     
-//    To implement a GUI form where technician can view appointment information
-    public void searchAppointment() {
-        
-    }
     
 }

@@ -53,6 +53,22 @@ public class Customer extends Person {
 
 	return new Customer(username, name, birthday, phoneNumber, email, address, bankCard);
     }
+    
+    private static boolean exists(String username) {
+	return Customer.get(username) != null;
+    }
+
+    private static String stringify(Customer customer) {
+	String result = "";
+	result += customer.getUsername() + "\t";
+	result += customer.getName() + "\t";
+	result += customer.getBirthday() + "\t";
+	result += customer.getPhoneNumber() + "\t";
+	result += customer.getEmail() + "\t";
+	result += customer.getAddress() + "\t";
+	result += customer.getBankCard() + "\n";
+	return result;
+    }
 
     // Returns true for any phone number that starts with +60 followed by 8-10 digits
     public static boolean isValidPhoneNumber(String phoneNumber) {
@@ -68,6 +84,8 @@ public class Customer extends Person {
     public static boolean isValidBankCard(String bankCard) {
 	return bankCard.matches("^[0-9]{8,19}$");
     }
+    
+
     
     public static Customer get(String username) {
 	try {
@@ -105,22 +123,6 @@ public class Customer extends Person {
 	}
 	
 	return customers;
-    }
-
-    public static boolean exists(String username) {
-	return Customer.get(username) != null;
-    }
-
-    public static String stringify(Customer customer) {
-	String result = "";
-	result += customer.getUsername() + "\t";
-	result += customer.getName() + "\t";
-	result += customer.getBirthday() + "\t";
-	result += customer.getPhoneNumber() + "\t";
-	result += customer.getEmail() + "\t";
-	result += customer.getAddress() + "\t";
-	result += customer.getBankCard() + "\n";
-	return result;
     }
 
     public static boolean register(Customer customer) {

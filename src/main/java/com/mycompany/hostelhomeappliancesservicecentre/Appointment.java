@@ -62,16 +62,7 @@ public class Appointment {
         this.feedback = "";
     }
     
-    
-    public int getDurationInHours() {
-        return Appointment.durationInHours;
-    }
-    
-    public double getAppointmentPrice() {
-        return Appointment.appointmentPrice;
-    }
-    
-    private static int getNextId() {
+        private static int getNextId() {
         try {
             File appointmentFile = new File("data/" + Appointment.fileName);
             Scanner fileReader = new Scanner(appointmentFile);
@@ -96,8 +87,8 @@ public class Appointment {
 	
 	return 0;
     }
-    
-    
+       
+
 //    Implement parsing feature to go through files and locate appointment ID
     public static Appointment parse(String appointmentLine) {
         String[] appointmentDetails = appointmentLine.split("\t");
@@ -117,7 +108,6 @@ public class Appointment {
         
         return new Appointment(id, customer, dateTime, appliance, technician);
     }
-    
     
     
 //    Return an appointment object from file
@@ -292,6 +282,14 @@ public class Appointment {
 	return false;
     }
     
+    public static int getDurationInHours() {
+        return Appointment.durationInHours;
+    }
+    
+    public static double getAppointmentPrice() {
+        return Appointment.appointmentPrice;
+    }
+    
     public int getId() {
         return this.id;
     }
@@ -344,13 +342,4 @@ public class Appointment {
         this.feedback = feedback;
     }
     
-//    Implement GUI form to collect payment
-    public void collectPayment() {
-        
-    }
-    
-//    Implement GUI form to generate reports and receipts
-    public void generateReport() {
-        
-    }
 }
