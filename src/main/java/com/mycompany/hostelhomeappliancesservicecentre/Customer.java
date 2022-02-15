@@ -40,21 +40,6 @@ public class Customer extends Person {
 	this.bankCard = bankCard;
     }
 
-    // TODO: Implement phone number validation using RegExp
-    private static boolean validatePhoneNumber(String phoneNumber) {
-	return false;
-    }
-
-    // TODO: Implement email validation using RegExp
-    private static boolean validateEmail(String email) {
-	return false;
-    }
-
-    // TODO: Implement bank card validation using RegExp
-    private static boolean validateBankCard(String bankCard) {
-	return false;
-    }
-
     private static Customer parse(String customerLine) {
 	String[] customerDetails = customerLine.split("\t");
 
@@ -69,6 +54,21 @@ public class Customer extends Person {
 	return new Customer(username, name, birthday, phoneNumber, email, address, bankCard);
     }
 
+    // Returns true for any phone number that starts with +60 followed by 8-10 digits
+    public static boolean isValidPhoneNumber(String phoneNumber) {
+	return phoneNumber.matches("^\\+60[0-9]{8,10}$");
+    }
+
+    // Returns true for any email address that only contains letters, numbers, dashes, underscores and dots
+    public static boolean isValidEmail(String email) {
+	return email.matches("^[A-Z0-9+_.-]+@[A-Z0-9.-]+$");
+    }
+
+    // Returns true for any bank card number that contains 8-19 digits
+    public static boolean isValidBankCard(String bankCard) {
+	return bankCard.matches("^[0-9]{8,19}$");
+    }
+    
     public static Customer get(String username) {
 	try {
 	    File customersFile = new File("data/" + Customer.fileName);
