@@ -1,6 +1,7 @@
-cust1	Hasan D. Piker	1900-10-18	011-55018109	hasanthehun@outlook.com	No. 3, Emerald Road	0004033044850020
+cust1	Hasan D. Piker	1900-10-01	+6035018109	hasanthehun@outlook.com	No. 3, Emerald Road	0004033044850020
 cust2	Michael Reeves	2003-01-01	+6012345678	michael.reeves@gmail.com	No. 7, Newell Road	7593390508484573
 roshennair	Roshen Nair	2001-10-18	+601155018109	roshen620@gmail.com	No. 5, Jalan RJ 1/1	123456789012345
-cust3	Arvind	2015-07-01	039-29588593	arvind@gmail.com	No. 5, Taman Teknologi	2903885357239085
-Test	Tester	1980-02-25	0123456789	test@mail.com	Area 51	4827493758491057
-ABC	abcdef	2007-05-01	+60123456789	ABC@MAIL.COM	ABC Land	123456789
+cust3	Arvind	2015-07-01	+601295885934	arvind@gmail.com	No. 5, Taman Teknologi	2903885357239085
+Test	Tester	1980-02-01	+60123456789	test@mail.com	Area 51	4827493758491057
+ABC	abcdef	2007-05-01	+60123456789	abc@mail.com	ABC Land	123456789
+cust4	Bagaskara	2000-08-01	+60123498765	bagas@mail.com	Southview	5372070501461935
