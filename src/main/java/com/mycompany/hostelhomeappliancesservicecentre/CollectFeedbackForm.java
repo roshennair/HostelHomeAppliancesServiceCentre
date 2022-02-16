@@ -29,7 +29,7 @@ public class CollectFeedbackForm extends javax.swing.JFrame {
     private void initComponents() {
 
         systemTitleLabel = new javax.swing.JLabel();
-        bankCardLabel = new javax.swing.JLabel();
+        feedbackLabel = new javax.swing.JLabel();
         formTitleLabel = new javax.swing.JLabel();
         feedbackScrollPane = new javax.swing.JScrollPane();
         feedbackTextArea = new javax.swing.JTextArea();
@@ -43,7 +43,7 @@ public class CollectFeedbackForm extends javax.swing.JFrame {
         systemTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         systemTitleLabel.setText("APU Hostel Home Appliances Service Centre");
 
-        bankCardLabel.setText("Feedback");
+        feedbackLabel.setText("Feedback");
 
         formTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         formTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -88,7 +88,7 @@ public class CollectFeedbackForm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(feedbackScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bankCardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(feedbackLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(103, 103, 103))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(submitButton)
@@ -102,7 +102,7 @@ public class CollectFeedbackForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addComponent(bankCardLabel)
+                .addComponent(feedbackLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(feedbackScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
@@ -174,7 +174,7 @@ public class CollectFeedbackForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JLabel bankCardLabel;
+    private javax.swing.JLabel feedbackLabel;
     private javax.swing.JScrollPane feedbackScrollPane;
     private javax.swing.JTextArea feedbackTextArea;
     private javax.swing.JLabel formTitleLabel;

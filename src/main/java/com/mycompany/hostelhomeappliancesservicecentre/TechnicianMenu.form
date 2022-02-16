@@ -42,10 +42,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="formTitleLabel1" min="-2" pref="429" max="-2" attributes="0"/>
+                  <Component id="formTitleLabel" min="-2" pref="429" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="formTitleLabel" min="-2" pref="411" max="-2" attributes="0"/>
+                      <Component id="technicianNameLabel" min="-2" pref="411" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -58,9 +58,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="systemTitleLabel" min="-2" pref="43" max="-2" attributes="0"/>
               <EmptySpace pref="23" max="32767" attributes="0"/>
-              <Component id="formTitleLabel1" min="-2" pref="33" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="formTitleLabel" min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="technicianNameLabel" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="AppointmentSearchButton" min="-2" pref="34" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -80,7 +80,7 @@
         <Property name="text" type="java.lang.String" value="APU Hostel Home Appliances Service Centre"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="formTitleLabel">
+    <Component class="javax.swing.JLabel" name="technicianNameLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
@@ -107,7 +107,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="formTitleLabel1">
+    <Component class="javax.swing.JLabel" name="formTitleLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>

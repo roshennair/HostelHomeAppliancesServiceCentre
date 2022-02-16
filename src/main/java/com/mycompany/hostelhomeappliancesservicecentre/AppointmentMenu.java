@@ -35,7 +35,7 @@ public class AppointmentMenu extends javax.swing.JFrame {
         collectPaymentButton = new javax.swing.JButton();
         collectFeedbackButton = new javax.swing.JButton();
         generateReportButton = new javax.swing.JButton();
-        formTitleLabel1 = new javax.swing.JLabel();
+        appointmentIdLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,9 +84,9 @@ public class AppointmentMenu extends javax.swing.JFrame {
             }
         });
 
-        formTitleLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        formTitleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formTitleLabel1.setText("Appointment ID: " + ServiceCentre.getInstance().getCurrentAppointment().getId());
+        appointmentIdLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        appointmentIdLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        appointmentIdLabel.setText("Appointment ID: " + ServiceCentre.getInstance().getCurrentAppointment().getId());
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +124,7 @@ public class AppointmentMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(formTitleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(appointmentIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -136,7 +136,7 @@ public class AppointmentMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(formTitleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(appointmentIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(modifyAppointmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
@@ -248,12 +248,12 @@ public class AppointmentMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel appointmentIdLabel;
     private javax.swing.JButton backButton;
     private javax.swing.JButton cancelAppointmentButton;
     private javax.swing.JButton collectFeedbackButton;
     private javax.swing.JButton collectPaymentButton;
     private javax.swing.JLabel formTitleLabel;
-    private javax.swing.JLabel formTitleLabel1;
     private javax.swing.JButton generateReportButton;
     private javax.swing.JButton modifyAppointmentButton;
     private javax.swing.JLabel systemTitleLabel;
