@@ -11,7 +11,7 @@ package com.mycompany.hostelhomeappliancesservicecentre;
 public class ReportGenerationForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form ReportGenerationForm
+     * Creates new form ReportGenerationForm1
      */
     public ReportGenerationForm() {
         initComponents();
@@ -27,92 +27,133 @@ public class ReportGenerationForm extends javax.swing.JFrame {
     private void initComponents() {
 
         systemTitleLabel = new javax.swing.JLabel();
-        formTitleLabel1 = new javax.swing.JLabel();
-        appointmentCustomerInformation = new javax.swing.JLabel();
-        customerPersonalInformation = new javax.swing.JLabel();
-        appointmentCustomerInformation1 = new javax.swing.JLabel();
-        appointmentCustomerInformation2 = new javax.swing.JLabel();
-        appointmentCustomerInformation3 = new javax.swing.JLabel();
-        appointmentCustomerInformation4 = new javax.swing.JLabel();
-        appointmentCustomerInformation5 = new javax.swing.JLabel();
-        appointmentCustomerInformation6 = new javax.swing.JLabel();
-        appointmentCustomerInformation7 = new javax.swing.JLabel();
-        customerPersonalInformation1 = new javax.swing.JLabel();
-        customerPersonalInformation2 = new javax.swing.JLabel();
-        customerPersonalInformation3 = new javax.swing.JLabel();
+        formTitleLabel = new javax.swing.JLabel();
+        appointmentIdLabel = new javax.swing.JLabel();
+        customerUsernameLabel = new javax.swing.JLabel();
+        customerNameLabel = new javax.swing.JLabel();
+        appointmentDateTimeLabel = new javax.swing.JLabel();
+        appointmentApplianceLabel = new javax.swing.JLabel();
+        appointmentTechnicianUsernameLabel = new javax.swing.JLabel();
+        customerPaidLabel = new javax.swing.JLabel();
+        customerFeedbackLabel = new javax.swing.JLabel();
+        customerBirthdayLabel = new javax.swing.JLabel();
+        customerPhoneLabel = new javax.swing.JLabel();
+        customerEmailLabel = new javax.swing.JLabel();
+        customerAddressLabel = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
+        appointmentPriceLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Report Generation Form");
 
         systemTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         systemTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         systemTitleLabel.setText("APU Hostel Home Appliances Service Centre");
 
-        formTitleLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        formTitleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formTitleLabel1.setText("Report Generation");
+        formTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        formTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        formTitleLabel.setText("Report Generation");
 
         Appointment currentAppointment = ServiceCentre.getInstance().getCurrentAppointment();
         Customer currentCustomer = currentAppointment.getCustomer();
-        appointmentCustomerInformation.setText("Appointment ID: " + currentAppointment.getId());
+        appointmentIdLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        appointmentIdLabel.setText("Appointment ID: " + currentAppointment.getId());
 
-        customerPersonalInformation.setText("Customer DOB: " + currentCustomer.getBirthday()
+        customerUsernameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        customerUsernameLabel.setText("Customer username: " + currentCustomer.getUsername()
         );
 
-        appointmentCustomerInformation1.setText("Customer username: " + currentCustomer.getUsername()
+        customerNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        customerNameLabel.setText("Customer name: " + currentCustomer.getName());
+
+        appointmentDateTimeLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        appointmentDateTimeLabel.setText("Appointment date and time: " + currentAppointment.getDateTime());
+
+        appointmentApplianceLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        appointmentApplianceLabel.setText("Appliance serviced: " + currentAppointment.getAppliance());
+
+        appointmentTechnicianUsernameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        appointmentTechnicianUsernameLabel.setText("Technician username: " + currentAppointment.getTechnician().getUsername());
+
+        customerPaidLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        String paidOrNot = Boolean.toString(currentAppointment.isPaid());
+
+        if(paidOrNot.equals("true")) {
+            paidOrNot = "Paid";
+        } else {
+            paidOrNot = "Not paid";
+        }
+        customerPaidLabel.setText("Paid status: " + paidOrNot);
+
+        String feedback = currentAppointment.getFeedback();
+
+        if(feedback.isBlank()) {
+            feedback = "Not provided yet";
+        }
+        customerFeedbackLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        customerFeedbackLabel.setText("Customer feedback: " + feedback);
+
+        customerBirthdayLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        customerBirthdayLabel.setText("Customer DOB: " + currentCustomer.getBirthday()
         );
 
-        appointmentCustomerInformation2.setText("Customer name: " + currentCustomer.getName());
+        customerPhoneLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        customerPhoneLabel.setText("Customer Phone Number: " + currentCustomer.getPhoneNumber());
 
-        appointmentCustomerInformation3.setText("Appointment date and time: " + currentAppointment.getDateTime());
-
-        appointmentCustomerInformation4.setText("Appliance serviced: " + currentAppointment.getAppliance());
-
-        appointmentCustomerInformation5.setText("Technician username: " + currentAppointment.getTechnician().getUsername());
-
-        appointmentCustomerInformation6.setText("Customer paid: " + currentAppointment.isPaid());
-
-        appointmentCustomerInformation7.setText("Customer feedback: " + currentAppointment.getFeedback());
-
-        customerPersonalInformation1.setText("Customer Phone Number: " + currentCustomer.getPhoneNumber());
-
-        customerPersonalInformation2.setText("Customer Email: " + currentCustomer.getEmail()
+        customerEmailLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        customerEmailLabel.setText("Customer Email: " + currentCustomer.getEmail()
         );
 
-        customerPersonalInformation3.setText("Customer Address: " + currentCustomer.getAddress()
+        customerAddressLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        customerAddressLabel.setText("Customer Address: " + currentCustomer.getAddress()
         );
+
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        appointmentPriceLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        appointmentPriceLabel.setText("Total Price: RM 50");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(customerNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(appointmentApplianceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(appointmentTechnicianUsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(appointmentDateTimeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(customerUsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(appointmentIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerPaidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerFeedbackLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(formTitleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(appointmentCustomerInformation1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(appointmentCustomerInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(appointmentCustomerInformation6, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(appointmentCustomerInformation7, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(appointmentCustomerInformation3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(appointmentCustomerInformation2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(appointmentCustomerInformation4, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(appointmentCustomerInformation5, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(55, 55, 55)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(customerPersonalInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(customerPersonalInformation2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(customerPersonalInformation3, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(customerPersonalInformation1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(systemTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(69, Short.MAX_VALUE))
+                    .addComponent(appointmentPriceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(customerPhoneLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(customerEmailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(customerAddressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(customerBirthdayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(59, 59, 59))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(99, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(systemTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(97, 97, 97))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,38 +161,47 @@ public class ReportGenerationForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(systemTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formTitleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(appointmentCustomerInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(formTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(appointmentIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(appointmentCustomerInformation1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(customerUsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(appointmentCustomerInformation2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(customerNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(appointmentCustomerInformation3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(appointmentDateTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(appointmentCustomerInformation4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(appointmentApplianceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(appointmentCustomerInformation5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(appointmentTechnicianUsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(customerPersonalInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(customerBirthdayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(customerPersonalInformation1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(customerPhoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(customerPersonalInformation2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(customerEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(customerPersonalInformation3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(customerAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(appointmentCustomerInformation6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customerPaidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(appointmentPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(appointmentCustomerInformation7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addComponent(customerFeedbackLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(backButton)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        ServiceCentre.getInstance().setCurrentWindow(new AppointmentMenu());
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,6 +229,7 @@ public class ReportGenerationForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ReportGenerationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -189,19 +240,21 @@ public class ReportGenerationForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel appointmentCustomerInformation;
-    private javax.swing.JLabel appointmentCustomerInformation1;
-    private javax.swing.JLabel appointmentCustomerInformation2;
-    private javax.swing.JLabel appointmentCustomerInformation3;
-    private javax.swing.JLabel appointmentCustomerInformation4;
-    private javax.swing.JLabel appointmentCustomerInformation5;
-    private javax.swing.JLabel appointmentCustomerInformation6;
-    private javax.swing.JLabel appointmentCustomerInformation7;
-    private javax.swing.JLabel customerPersonalInformation;
-    private javax.swing.JLabel customerPersonalInformation1;
-    private javax.swing.JLabel customerPersonalInformation2;
-    private javax.swing.JLabel customerPersonalInformation3;
-    private javax.swing.JLabel formTitleLabel1;
+    private javax.swing.JLabel appointmentApplianceLabel;
+    private javax.swing.JLabel appointmentDateTimeLabel;
+    private javax.swing.JLabel appointmentIdLabel;
+    private javax.swing.JLabel appointmentPriceLabel;
+    private javax.swing.JLabel appointmentTechnicianUsernameLabel;
+    private javax.swing.JButton backButton;
+    private javax.swing.JLabel customerAddressLabel;
+    private javax.swing.JLabel customerBirthdayLabel;
+    private javax.swing.JLabel customerEmailLabel;
+    private javax.swing.JLabel customerFeedbackLabel;
+    private javax.swing.JLabel customerNameLabel;
+    private javax.swing.JLabel customerPaidLabel;
+    private javax.swing.JLabel customerPhoneLabel;
+    private javax.swing.JLabel customerUsernameLabel;
+    private javax.swing.JLabel formTitleLabel;
     private javax.swing.JLabel systemTitleLabel;
     // End of variables declaration//GEN-END:variables
 }

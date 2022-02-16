@@ -4,6 +4,8 @@
  */
 package com.mycompany.hostelhomeappliancesservicecentre;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author arvin
@@ -112,11 +114,21 @@ public class CollectFeedbackForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void feedbackUpdatedMessage() {
+        JOptionPane.showMessageDialog(
+                this,
+                "The feedback was updated!",
+                "Feedback Updated",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
         ServiceCentre.getInstance().getCurrentAppointment().setFeedback(feedbackTextArea.getText());
         Appointment.update(ServiceCentre.getInstance().getCurrentAppointment());
+        this.feedbackUpdatedMessage();
+        ServiceCentre.getInstance().setCurrentWindow(new AppointmentMenu());
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

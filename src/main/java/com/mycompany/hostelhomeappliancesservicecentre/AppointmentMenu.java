@@ -170,7 +170,12 @@ public class AppointmentMenu extends javax.swing.JFrame {
 
     private void collectPaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectPaymentButtonActionPerformed
         // TODO add your handling code here:
-        ServiceCentre.getInstance().setCurrentWindow(new CollectPaymentForm());
+        if(ServiceCentre.getInstance().getCurrentAppointment().isPaid()) {
+            this.paymentExistsMessage();
+        }
+        else {
+            ServiceCentre.getInstance().setCurrentWindow(new CollectPaymentForm());
+        }
     }//GEN-LAST:event_collectPaymentButtonActionPerformed
 
     private void collectFeedbackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectFeedbackButtonActionPerformed
@@ -196,6 +201,14 @@ public class AppointmentMenu extends javax.swing.JFrame {
                 "Success",
                 JOptionPane.INFORMATION_MESSAGE);
         
+    }
+    
+    private void paymentExistsMessage() {
+        JOptionPane.showMessageDialog(
+                this,
+                "This appointment has already been paid!",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
     }
     
     /**

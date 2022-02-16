@@ -4,6 +4,8 @@
  */
 package com.mycompany.hostelhomeappliancesservicecentre;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author arvin
@@ -35,6 +37,7 @@ public class CollectPaymentForm extends javax.swing.JFrame {
         bankCardField = new javax.swing.JTextField();
         payButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        totalPriceLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Payment Collection Form");
@@ -71,6 +74,8 @@ public class CollectPaymentForm extends javax.swing.JFrame {
             }
         });
 
+        totalPriceLabel.setText("Total Price: RM 50");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,7 +84,8 @@ public class CollectPaymentForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bankCardLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
-                    .addComponent(bankCardField))
+                    .addComponent(bankCardField)
+                    .addComponent(totalPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +114,9 @@ public class CollectPaymentForm extends javax.swing.JFrame {
                 .addComponent(bankCardLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bankCardField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(totalPriceLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(payButton)
                     .addComponent(backButton))
@@ -117,7 +125,15 @@ public class CollectPaymentForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void paymentSuccessMessage() {
+        JOptionPane.showMessageDialog(
+                this,
+                "The payment was successful!",
+                "Payment Success",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     private void bankCardFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankCardFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bankCardFieldActionPerformed
@@ -126,6 +142,9 @@ public class CollectPaymentForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         ServiceCentre.getInstance().getCurrentAppointment().setPaid(true);
         Appointment.update(ServiceCentre.getInstance().getCurrentAppointment());
+        this.paymentSuccessMessage();
+        ServiceCentre.getInstance().setCurrentWindow(new AppointmentMenu());
+        
     }//GEN-LAST:event_payButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -176,5 +195,6 @@ public class CollectPaymentForm extends javax.swing.JFrame {
     private javax.swing.JLabel formTitleLabel;
     private javax.swing.JButton payButton;
     private javax.swing.JLabel systemTitleLabel;
+    private javax.swing.JLabel totalPriceLabel;
     // End of variables declaration//GEN-END:variables
 }

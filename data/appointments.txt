@@ -1,4 +1,5 @@
-4	cust3	2020-04-01T15:00	Machine	tech1	false	 
+4	cust3	2020-04-02T15:00	Machines	tech2	true	what
 6	roshennair	2020-04-02T15:00	Hairdryer	tech1	true	TestOne
-8	cust1	2012-05-01T13:00	Remote	tech2	true	 
-9	cust3	2022-12-07T14:00	Camera	tech1	false	TestTwo
+7	Test	2022-06-05T10:00	Appliance	tech1	true	Feedback123
+8	roshennair	2020-04-02T16:00	ok	tech1	false	 
+9	cust2	2020-04-02T16:00	okok	tech2	false	 
