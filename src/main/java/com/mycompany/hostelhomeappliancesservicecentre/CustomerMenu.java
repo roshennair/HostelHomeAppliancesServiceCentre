@@ -64,7 +64,7 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         welcomeMessage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         welcomeMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        welcomeMessage.setText("Hi, " + ServiceCentre.getInstance().getCurrentCustomer().getName());
+        welcomeMessage.setText(ServiceCentre.getInstance().getCurrentCustomer().getName());
         welcomeMessage.setPreferredSize(new java.awt.Dimension(551, 434));
 
         systemTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
