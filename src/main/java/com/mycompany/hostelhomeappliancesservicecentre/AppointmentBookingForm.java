@@ -49,6 +49,7 @@ public class AppointmentBookingForm extends javax.swing.JFrame {
         dayLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Appointment Booking Form");
 
         systemTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         systemTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
