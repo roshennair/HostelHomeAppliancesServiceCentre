@@ -33,6 +33,7 @@ public class TechnicianMenu extends javax.swing.JFrame {
         formTitleLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Technician Menu");
 
         systemTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         systemTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
