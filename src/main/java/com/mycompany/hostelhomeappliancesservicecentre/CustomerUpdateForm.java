@@ -25,7 +25,7 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
 	this.dayField.getModel().setSelectedItem(birthday.getDayOfMonth());
 	this.monthField.getModel().setSelectedItem(birthday.getMonthValue());
 	this.yearField.getModel().setSelectedItem(birthday.getYear());
-	this.phoneNumberField.setText(currentCustomer.getPhoneNumber());
+	this.phoneNumberField.setText(currentCustomer.getPhoneNumber().substring(3));
 	this.emailField.setText(currentCustomer.getEmail());
 	this.addressField.setText(currentCustomer.getAddress());
 	this.bankCardField.setText(currentCustomer.getBankCard());
@@ -349,22 +349,22 @@ public class CustomerUpdateForm extends javax.swing.JFrame {
     }
     
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        String username = this.usernameField.getText();
-	String name = this.nameField.getText();
+        String username = this.usernameField.getText().trim();
+	String name = this.nameField.getText().trim();
 	int year = Integer.valueOf(this.yearField.getSelectedItem().toString());
 	int month = Integer.valueOf(this.monthField.getSelectedItem().toString());
 	int day = Integer.valueOf(this.dayField.getSelectedItem().toString());
 	LocalDate birthday = LocalDate.of(year, month, day);
-	String phoneNumber = this.phoneNumberField.getText();
-	String email = this.emailField.getText();
-	String address = this.addressField.getText();
-	String bankCard = this.bankCardField.getText();
+	String phoneNumber = "+60" + this.phoneNumberField.getText().trim();
+	String email = this.emailField.getText().trim();
+	String address = this.addressField.getText().trim();
+	String bankCard = this.bankCardField.getText().trim();
 
 	if (!Customer.isValidPhoneNumber(phoneNumber)) {
 	    this.displayCustomerUpdateErrorMessage("Phone numbers can only contain 8-10 digits after the +60 country code.");
 	    return;
 	} else if (!Customer.isValidEmail(email)) {
-	    this.displayCustomerUpdateErrorMessage("Email addresses can only contain letters, digits, dashes (-), dots (.), underscores (_) and 1 ampersand (@).");
+	    this.displayCustomerUpdateErrorMessage("Email addresses should be in the format username@domain, and can only contain letters, digits, underscores (_), dots (.), dashes (-), and 1 alias (@).");
 	    return;
 	} else if (!Customer.isValidBankCard(bankCard)) {
 	    this.displayCustomerUpdateErrorMessage("Bank card numbers can only contain 8-19 digits.");

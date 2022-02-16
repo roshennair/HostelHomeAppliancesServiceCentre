@@ -72,17 +72,17 @@ public class Customer extends Person {
 
     // Returns true for any phone number that starts with +60 followed by 8-10 digits
     public static boolean isValidPhoneNumber(String phoneNumber) {
-	return phoneNumber.matches("^\\+60[0-9]{8,10}$");
+	return phoneNumber.matches("\\+60[0-9]{8,10}");
     }
 
     // Returns true for any email address that only contains letters, numbers, dashes, underscores and dots
     public static boolean isValidEmail(String email) {
-	return email.matches("^[A-Z0-9+_.-]+@[A-Z0-9.-]+$");
+	return email.matches("[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+");
     }
 
     // Returns true for any bank card number that contains 8-19 digits
     public static boolean isValidBankCard(String bankCard) {
-	return bankCard.matches("^[0-9]{8,19}$");
+	return bankCard.matches("[0-9]{8,19}");
     }
     
 

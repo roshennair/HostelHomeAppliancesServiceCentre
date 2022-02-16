@@ -344,22 +344,22 @@ public class CustomerRegistrationForm extends javax.swing.JFrame {
     }
     
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-	String username = this.usernameField.getText();
-	String name = this.nameField.getText();
+	String username = this.usernameField.getText().trim();
+	String name = this.nameField.getText().trim();
 	int year = Integer.valueOf(this.yearField.getSelectedItem().toString());
 	int month = Integer.valueOf(this.monthField.getSelectedItem().toString());
 	int day = Integer.valueOf(this.dayField.getSelectedItem().toString());
 	LocalDate birthday = LocalDate.of(year, month, day);
-	String phoneNumber = "+60" + this.phoneNumberField.getText();
-	String email = this.emailField.getText();
-	String address = this.addressField.getText();
-	String bankCard = this.bankCardField.getText();
+	String phoneNumber = "+60" + this.phoneNumberField.getText().trim();
+	String email = this.emailField.getText().trim();
+	String address = this.addressField.getText().trim();
+	String bankCard = this.bankCardField.getText().trim();
 
 	if (!Customer.isValidPhoneNumber(phoneNumber)) {
 	    this.displayCustomerRegistrationErrorMessage("Phone numbers can only contain 8-10 digits after the +60 country code.");
 	    return;
 	} else if (!Customer.isValidEmail(email)) {
-	    this.displayCustomerRegistrationErrorMessage("Email addresses can only contain letters, digits, dashes (-), dots (.), underscores (_) and 1 ampersand (@).");
+	    this.displayCustomerRegistrationErrorMessage("Email addresses should be in the format username@domain, and can only contain letters, digits, underscores (_), dots (.), dashes (-), and 1 alias (@).");
 	    return;
 	} else if (!Customer.isValidBankCard(bankCard)) {
 	    this.displayCustomerRegistrationErrorMessage("Bank card numbers can only contain 8-19 digits.");

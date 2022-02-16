@@ -262,7 +262,7 @@ public class AppointmentBookingForm extends javax.swing.JFrame {
 	int hours = Integer.valueOf(this.timeField.getSelectedItem().toString().substring(0, 2));
 	int minutes = 0;
         LocalDateTime dateTime = LocalDateTime.of(year, month, day, hours, minutes);
-        String appliance = this.applianceField.getText();
+        String appliance = this.applianceField.getText().trim();
 	String technicianUsername = this.technicianField.getSelectedItem().toString();
 	Technician technician = Technician.get(technicianUsername);
 	
