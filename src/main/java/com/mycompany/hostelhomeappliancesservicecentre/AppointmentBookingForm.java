@@ -110,8 +110,8 @@ public class AppointmentBookingForm extends javax.swing.JFrame {
             }
         });
 
-        int minYear = 1900;
-        int maxYear = 2022;
+        int minYear = 2022;
+        int maxYear = 2025;
         String[] years = new String[maxYear - minYear + 1];
         for (int i = 0, j = minYear; j <= maxYear; i++, j++) {
             years[i] = String.valueOf(j);
