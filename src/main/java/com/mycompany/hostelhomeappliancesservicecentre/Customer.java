@@ -77,7 +77,7 @@ public class Customer extends Person {
 
     // Returns true for any email address that only contains letters, numbers, dashes, underscores and dots
     public static boolean isValidEmail(String email) {
-	return email.matches("[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+");
+	return email.matches("[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+");
     }
 
     // Returns true for any bank card number that contains 8-19 digits
