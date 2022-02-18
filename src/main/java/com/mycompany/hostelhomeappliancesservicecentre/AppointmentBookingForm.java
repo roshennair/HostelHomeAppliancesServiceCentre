@@ -271,7 +271,7 @@ public class AppointmentBookingForm extends javax.swing.JFrame {
 
         if (Appointment.book(newAppointment)) {
             this.displayAppointmentBookingSuccessMessage();
-            ServiceCentre.getInstance().setCurrentWindow(new ManagerMenu());
+            ServiceCentre.getInstance().setCurrentWindow(new CustomerMenu());
         } else {
             this.displayAppointmentBookingErrorMessage();
         }
